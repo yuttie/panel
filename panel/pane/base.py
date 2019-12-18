@@ -254,9 +254,26 @@ class PaneBase(Reactive):
 
 
 def recursive_update(layout, index, old, new):
+    """
+    Recursively updates models in a layout if their types match
+    otherwise replaces them.
+
+    Arguments
+    ---------
+    layout: Panel
+        The layout the items are being updated or replaced on.
+    index: int
+        The index of the item being replaced.
+    old: Viewable
+        The Viewable being updated or replaced.
+    new: Viewable
+        The new Viewable that the old one is being updated or replaced
+        with.
+    """
     ignored = ('name',)
     if type(old) is not type(new):
         layout[index] = new
+        return
     elif isinstance(new, Panel):
         if len(old) == len(new):
             for i, (sub_old, sub_new) in enumerate(zip(old, new)):
