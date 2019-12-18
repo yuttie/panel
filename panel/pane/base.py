@@ -12,7 +12,7 @@ from bokeh.io import curdoc as _curdoc
 from bokeh.models.layouts import GridBox as _BkGridBox
 
 from ..io import push, state, unlocked
-from ..layout import Panel, Row
+from ..layout import Panel, Row, Tabs
 from ..links import Link
 from ..viewable import Viewable, Reactive, Layoutable
 from ..util import param_reprs
@@ -253,6 +253,22 @@ class PaneBase(Reactive):
         raise TypeError('%s type could not be rendered.' % type(obj).__name__)
 
 
+def recursive_update(layout, index, old, new):
+    ignored = ('name',)
+    if type(old) is not type(new):
+        layout[index] = new
+    elif isinstance(new, Panel):
+        if len(old) == len(new):
+            for i, (sub_old, sub_new) in enumerate(zip(old, new)):
+                if isinstance(new, Tabs):
+                    old._names[i] = new._names[i]
+                recursive_update(new, i, sub_old, sub_new)
+            ignored += ('objects',)
+    pvals = dict(old.get_param_values())
+    new_params = {k: v for k, v in new.get_param_values()
+                  if k not in ignored and v is not pvals[k]}
+    old.set_param(**new_params)
+
 
 class ReplacementPane(PaneBase):
     """
@@ -284,7 +300,10 @@ class ReplacementPane(PaneBase):
         except TypeError:
             links = []
         if type(self._pane) is pane_type and not links:
-            if isinstance(new_object, Reactive):
+            if isinstance(new_object, Panel) and len(self._pane) == len(new_object):
+                for i, (old, new) in enumerate(zip(self._pane, new_object)):
+                    recursive_update(self._pane, i, old, new)
+            elif isinstance(new_object, Reactive):
                 pvals = dict(self._pane.get_param_values())
                 new_params = {k: v for k, v in new_object.get_param_values()
                               if k != 'name' and v is not pvals[k]}
