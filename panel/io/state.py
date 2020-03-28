@@ -5,6 +5,8 @@ from __future__ import absolute_import, division, unicode_literals
 
 import threading
 
+from weakref import WeakSet
+
 import param
 
 from bokeh.document import Document
@@ -49,6 +51,9 @@ class _state(param.Parameterized):
     # Jupyter display handles
     _handles = {}
 
+    # Stores a set of locked Websockets, reset after every change event
+    _locks = WeakSet()
+
     def __repr__(self):
         server_info = []
         for server, panel, docs in self._servers.values():
@@ -83,6 +88,14 @@ class _state(param.Parameterized):
     @curdoc.setter
     def curdoc(self, doc):
         self._curdoc = doc
+
+    @property
+    def cookies(self):
+        return self.curdoc.session_context.request.cookies if self.curdoc else {}
+
+    @property
+    def headers(self):
+        return self.curdoc.session_context.request.headers if self.curdoc else {}
 
     @property
     def session_args(self):

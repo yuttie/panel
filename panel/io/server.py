@@ -14,6 +14,7 @@ from types import FunctionType
 
 from bokeh.document.events import ModelChangedEvent
 from bokeh.server.server import Server
+from tornado.websocket import WebSocketHandler
 
 from .state import state
 
@@ -40,10 +41,10 @@ def _eval_panel(panel, server_id, title, doc):
     from ..template import Template
     from ..pane import panel as as_panel
 
+    if isinstance(panel, FunctionType):
+        panel = panel()
     if isinstance(panel, Template):
         return panel._modify_doc(server_id, title, doc)
-    elif isinstance(panel, FunctionType):
-        panel = panel()
     return as_panel(panel)._modify_doc(server_id, title, doc)
     
 #---------------------------------------------------------------------
@@ -75,16 +76,19 @@ def unlocked():
         events = []
         for conn in connections:
             socket = conn._socket
+            if hasattr(socket, 'write_lock') and socket.write_lock._block._value == 0:
+                state._locks.add(socket)
+            locked = socket in state._locks
             for event in curdoc._held_events:
                 if (isinstance(event, ModelChangedEvent) and event not in old_events
-                    and hasattr(socket, 'write_message')):
+                    and hasattr(socket, 'write_message') and not locked):
                     msg = conn.protocol.create('PATCH-DOC', [event])
-                    socket.write_message(msg.header_json, locked=False)
-                    socket.write_message(msg.metadata_json, locked=False)
-                    socket.write_message(msg.content_json, locked=False)
+                    WebSocketHandler.write_message(socket, msg.header_json)
+                    WebSocketHandler.write_message(socket, msg.metadata_json)
+                    WebSocketHandler.write_message(socket, msg.content_json)
                     for header, payload in msg._buffers:
-                        socket.write_message(header, locked=False)
-                        socket.write_message(payload, binary=True, locked=False)
+                        WebSocketHandler.write_message(socket, header)
+                        WebSocketHandler.write_message(socket, payload, binary=True)
                 elif event not in events:
                     events.append(event)
         curdoc._held_events = events
