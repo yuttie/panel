@@ -25,7 +25,7 @@ from tornado import gen
 from .callbacks import PeriodicCallback
 from .config import config, panel_extension
 from .io.embed import embed_state
-from .io.model import add_to_doc, hold
+from .io.model import add_to_doc, hold, patch_cds_msg
 from .io.notebook import (
     ipywidget, push, render_mimebundle, render_model, show_embed, show_server
 )
@@ -52,8 +52,7 @@ class Layoutable(param.Parameterized):
         aspect_ratio`` relationship will be maintained.  Otherwise, if
         set to ``"auto"``, component's preferred width and height will
         be used to determine the aspect (if not set, no aspect will be
-        preserved).
-    """)
+        preserved).""")
 
     background = param.Parameter(default=None, doc="""
         Background color of the component.""")
@@ -90,56 +89,64 @@ class Layoutable(param.Parameterized):
         default="auto", objects=['auto', 'fixed', 'fit', 'min', 'max'], doc="""
         Describes how the component should maintain its width.
 
-        * "auto"
-          Use component's preferred sizing policy.
-        * "fixed"
-          Use exactly ``width`` pixels. Component will overflow if it
-          can't fit in the available horizontal space.
-        * "fit"
-          Use component's preferred width (if set) and allow it to fit
-          into the available horizontal space within the minimum and
-          maximum width bounds (if set). Component's width neither
-          will be aggressively minimized nor maximized.
-        * "min"
-          Use as little horizontal space as possible, not less than
-          the minimum width (if set).  The starting point is the
-          preferred width (if set). The width of the component may
-          shrink or grow depending on the parent layout, aspect
-          management and other factors.
-        * "max"
-          Use as much horizontal space as possible, not more than the
-          maximum width (if set).  The starting point is the preferred
-          width (if set). The width of the component may shrink or
-          grow depending on the parent layout, aspect management and
-          other factors.
+        ``"auto"``
+            Use component's preferred sizing policy.
+
+        ``"fixed"``
+            Use exactly ``width`` pixels. Component will overflow if
+            it can't fit in the available horizontal space.
+
+        ``"fit"``
+            Use component's preferred width (if set) and allow it to
+            fit into the available horizontal space within the minimum
+            and maximum width bounds (if set). Component's width
+            neither will be aggressively minimized nor maximized.
+
+        ``"min"``
+            Use as little horizontal space as possible, not less than
+            the minimum width (if set).  The starting point is the
+            preferred width (if set). The width of the component may
+            shrink or grow depending on the parent layout, aspect
+            management and other factors.
+
+        ``"max"``
+            Use as much horizontal space as possible, not more than
+            the maximum width (if set).  The starting point is the
+            preferred width (if set). The width of the component may
+            shrink or grow depending on the parent layout, aspect
+            management and other factors.
     """)
 
     height_policy = param.ObjectSelector(
         default="auto", objects=['auto', 'fixed', 'fit', 'min', 'max'], doc="""
         Describes how the component should maintain its height.
 
-        * "auto"
-          Use component's preferred sizing policy.
-        * "fixed"
-          Use exactly ``width`` pixels. Component will overflow if it
-          can't fit in the available horizontal space.
-        * "fit"
-          Use component's preferred width (if set) and allow it to fit
-          into the available horizontal space within the minimum and
-          maximum width bounds (if set). Component's width neither
-          will be aggressively minimized nor maximized.
-        * "min"
-          Use as little horizontal space as possible, not less than
-          the minimum width (if set).  The starting point is the
-          preferred width (if set). The width of the component may
-          shrink or grow depending on the parent layout, aspect
-          management and other factors.
-        * "max"
-          Use as much horizontal space as possible, not more than the
-          maximum width (if set).  The starting point is the preferred
-          width (if set). The width of the component may shrink or
-          grow depending on the parent layout, aspect management and
-          other factors.
+        ``"auto"``
+            Use component's preferred sizing policy.
+
+        ``"fixed"``
+            Use exactly ``height`` pixels. Component will overflow if
+            it can't fit in the available vertical space.
+
+        ``"fit"``
+            Use component's preferred height (if set) and allow to fit
+            into the available vertical space within the minimum and
+            maximum height bounds (if set). Component's height neither
+            will be aggressively minimized nor maximized.
+
+        ``"min"``
+            Use as little vertical space as possible, not less than
+            the minimum height (if set).  The starting point is the
+            preferred height (if set). The height of the component may
+            shrink or grow depending on the parent layout, aspect
+            management and other factors.
+
+        ``"max"``
+            Use as much vertical space as possible, not more than the
+            maximum height (if set).  The starting point is the
+            preferred height (if set). The height of the component may
+            shrink or grow depending on the parent layout, aspect
+            management and other factors.
     """)
 
     sizing_mode = param.ObjectSelector(default=None, objects=[
@@ -154,37 +161,44 @@ class Layoutable(param.Parameterized):
         ``aspect_ratio`` instead (those take precedence over
         ``sizing_mode``).
 
-        * "fixed"
-          Component is not responsive. It will retain its original
-          width and height regardless of any subsequent browser window
-          resize events.
-        * "stretch_width"
-          Component will responsively resize to stretch to the
-          available width, without maintaining any aspect ratio. The
-          height of the component depends on the type of the component
-          and may be fixed or fit to component's contents.
-        * "stretch_height"
-          Component will responsively resize to stretch to the
-          available height, without maintaining any aspect ratio. The
-          width of the component depends on the type of the component
-          and may be fixed or fit to component's contents.
-        * "stretch_both"
-          Component is completely responsive, independently in width
-          and height, and will occupy all the available horizontal and
-          vertical space, even if this changes the aspect ratio of the
-          component.
-        * "scale_width"
-          Component will responsively resize to stretch to the
-          available width, while maintaining the original or provided
-          aspect ratio.
-        * "scale_height"
-          Component will responsively resize to stretch to the
-          available height, while maintaining the original or provided
-          aspect ratio.
-        * "scale_both"
-          Component will responsively resize to both the available
-          width and height, while maintaining the original or provided
-          aspect ratio.
+        ``"fixed"``
+            Component is not responsive. It will retain its original
+            width and height regardless of any subsequent browser
+            window resize events.
+
+        ``"stretch_width"``
+            Component will responsively resize to stretch to the
+            available width, without maintaining any aspect ratio. The
+            height of the component depends on the type of the
+            component and may be fixed or fit to component's contents.
+
+        ``"stretch_height"``
+            Component will responsively resize to stretch to the
+            available height, without maintaining any aspect
+            ratio. The width of the component depends on the type of
+            the component and may be fixed or fit to component's
+            contents.
+
+        ``"stretch_both"``
+            Component is completely responsive, independently in width
+            and height, and will occupy all the available horizontal
+            and vertical space, even if this changes the aspect ratio
+            of the component.
+
+        ``"scale_width"``
+            Component will responsively resize to stretch to the
+            available width, while maintaining the original or
+            provided aspect ratio.
+
+        ``"scale_height"``
+            Component will responsively resize to stretch to the
+            available height, while maintaining the original or
+            provided aspect ratio.
+
+        ``"scale_both"``
+            Component will responsively resize to both the available
+            width and height, while maintaining the original or
+            provided aspect ratio.
     """)
 
     def __init__(self, **params):
@@ -194,7 +208,8 @@ class Layoutable(param.Parameterized):
             params.get('height_policy') is None and
             'sizing_mode' not in params):
             params['sizing_mode'] = 'fixed'
-        elif not self.param.sizing_mode.constant and not self.param.sizing_mode.readonly:
+        elif (not (self.param.sizing_mode.constant or self.param.sizing_mode.readonly) and
+              type(self).sizing_mode is None):
             params['sizing_mode'] = params.get('sizing_mode', config.sizing_mode)
         super(Layoutable, self).__init__(**params)
 
@@ -219,7 +234,8 @@ class ServableMixin(object):
         """
         Handles Protocol messages arriving from the client comm.
         """
-        doc, comm = state._views[ref][2:]
+        root, doc, comm = state._views[ref][1:]
+        patch_cds_msg(root, msg)
         patch = manager.assemble(msg)
         held = doc._hold
         patch.apply_to_document(doc, comm.id)
@@ -260,10 +276,12 @@ class ServableMixin(object):
         Serves the object if in a `panel serve` context and returns
         the Panel object to allow it to display itself in a notebook
         context.
+    
         Arguments
         ---------
         title : str
           A string title to give the Document (if served as an app)
+        
         Returns
         -------
         The Panel object itself
@@ -468,16 +486,16 @@ class Viewable(Layoutable, ServableMixin):
         return render_mimebundle(model, doc, comm, manager)
 
     def _comm_change(self, doc, ref, attr, old, new):
-        if attr in self._changing:
-            self._changing.remove(attr)
+        if attr in self._changing.get(ref, []):
+            self._changing[ref].remove(attr)
             return
 
         with hold(doc):
             self._process_events({attr: new})
 
     def _server_change(self, doc, ref, attr, old, new):
-        if attr in self._changing:
-            self._changing.remove(attr)
+        if attr in self._changing.get(ref, []):
+            self._changing[ref].remove(attr)
             return
 
         state._locks.clear()
@@ -642,9 +660,9 @@ class Viewable(Layoutable, ServableMixin):
            Optional title for the plot
         resources: bokeh resources
            One of the valid bokeh.resources (e.g. CDN or INLINE)
-       template:
+        template:
            passed to underlying io.save
-       template_variables:
+        template_variables:
            passed to underlying io.save
         embed: bool
            Whether the state space should be embedded in the saved file.
@@ -734,21 +752,21 @@ class Reactive(Viewable):
         self._callbacks = []
         self._links = []
         self._link_params()
-        self._changing = []
+        self._changing = {}
 
     #----------------------------------------------------------------
     # Callback API
     #----------------------------------------------------------------
 
     def _update_model(self, events, msg, root, model, doc, comm):
-        self._changing = [
+        self._changing[root.ref['id']] = [
             attr for attr, value in msg.items()
             if not model.lookup(attr).property.matches(getattr(model, attr), value)
         ]
         try:
             model.update(**msg)
         finally:
-            self._changing = []
+            del self._changing[root.ref['id']]
 
     def param_change(self, *events):
         msgs = []
@@ -763,7 +781,7 @@ class Reactive(Viewable):
             return
 
         for ref, (model, parent) in self._models.items():
-            if ref not in state._views:
+            if ref not in state._views or ref in state._fake_roots:
                 continue
             viewable, root, doc, comm = state._views[ref]
             if comm or not doc.session_context or state._unblocked(doc):

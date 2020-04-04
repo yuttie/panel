@@ -21,8 +21,9 @@ class _state(param.Parameterized):
     """
 
     cache = param.Dict(default={}, doc="""
-       Global location you can use to cache large datasets or expensive computation results
-       across multiple client sessions for a given server.""") 
+        Global location you can use to cache large datasets or
+        expensive computation results across multiple client sessions
+        for a given server.""")
 
     webdriver = param.Parameter(default=None, doc="""
         Selenium webdriver used to export bokeh models to pngs.""")
@@ -37,13 +38,13 @@ class _state(param.Parameterized):
     # Used to ensure that events are not scheduled from the wrong thread
     _thread_id = None
 
-    # Temporary flag to allow using Div model on static export
-    _html_escape = True
-
     _comm_manager = _CommManager
 
     # An index of all currently active views
     _views = {}
+
+    # For templates to keep reference to their main root
+    _fake_roots = []
 
     # An index of all currently active servers
     _servers = {}

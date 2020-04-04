@@ -19,6 +19,7 @@ from bokeh.models import (
 from bokeh.models.widgets import Tabs as BkTabs, Panel as BkPanel
 
 from .io.model import hold
+from .io.state import state
 from .util import param_name, param_reprs
 from .viewable import Layoutable, Reactive
 
@@ -190,6 +191,8 @@ class ListPanel(Panel):
         return super(ListPanel, self)._process_param_change(params)
 
     def _cleanup(self, root):
+        if root.ref['id'] in state._fake_roots:
+            state._fake_roots.remove(root.ref['id'])
         super(ListPanel, self)._cleanup(root)
         for p in self.objects:
             p._cleanup(root)
@@ -528,10 +531,11 @@ class WidgetBox(ListPanel):
         CSS classes to apply to the layout.""")
 
     disabled = param.Boolean(default=False, doc="""
-       Whether the widget is disabled.""")
+        Whether the widget is disabled.""")
 
-    horizontal = param.Boolean(default=False, doc="""Whether to lay out the
-                    widgets in a Row layout as opposed to a Column layout.""")
+    horizontal = param.Boolean(default=False, doc="""
+        Whether to lay out the widgets in a Row layout as opposed 
+        to a Column layout.""")
 
     margin = param.Parameter(default=5, doc="""
         Allows to create additional space around the component. May
@@ -593,8 +597,8 @@ class Tabs(ListPanel):
 
     _js_transforms = {'tabs': """
     var ids = [];
-    for (t of value) {{ ids.push(t.id) }};
-    value = ids;
+    for (var t of value) {{ ids.push(t.id) }};
+    var value = ids;
     """}
 
     def __init__(self, *items, **params):
@@ -646,17 +650,23 @@ class Tabs(ListPanel):
         """
         model, _ = self._models.get(ref)
         if model:
-            inds = [i for i, t in enumerate(model.tabs) if t in new]
+            inds = [old.index(tab) for tab in new]
             old = self.objects
             new = [old[i] for i in inds]
         return old, new
 
     def _comm_change(self, doc, ref, attr, old, new):
+        if attr in self._changing.get(ref, []):
+            self._changing[ref].remove(attr)
+            return
         if attr == 'tabs':
             old, new = self._process_close(ref, attr, old, new)
         super(Tabs, self)._comm_change(doc, ref, attr, old, new)
 
     def _server_change(self, doc, ref, attr, old, new):
+        if attr in self._changing.get(ref, []):
+            self._changing[ref].remove(attr)
+            return
         if attr == 'tabs':
             old, new = self._process_close(ref, attr, old, new)
         super(Tabs, self)._server_change(doc, ref, attr, old, new)
@@ -903,8 +913,7 @@ class GridSpec(Panel):
     objects = param.Dict(default={}, doc="""
         The dictionary of child objects that make up the grid.""")
 
-    mode = param.ObjectSelector(
-        default='warn', objects=['warn', 'error', 'override'], doc="""
+    mode = param.ObjectSelector(default='warn', objects=['warn', 'error', 'override'], doc="""
         Whether to warn, error or simply override on overlapping assignment.""")
 
     width = param.Integer(default=600)
