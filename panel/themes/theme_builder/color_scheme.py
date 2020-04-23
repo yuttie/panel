@@ -98,8 +98,26 @@ ANGULAR_DARK_COLOR_SCHEME = ColorScheme(
     theme=theme.DARK_THEME,
 )
 
+ORSTED_LIGHT = ColorScheme(
+    name="Orsted Light",
+    primary=color_palette.ORSTED_BLUE,
+    secondary=color_palette.ORSTED_AUBERGINE,
+    warning=color_palette.ORSTED_SUN,
+    theme=theme.LIGHT_THEME,
+)
+
+ORSTED_DARK = ColorScheme(
+    name="Orsted Dark",
+    primary=color_palette.ORSTED_AUBERGINE,
+    secondary=color_palette.ORSTED_AQUA,
+    warning=color_palette.ORSTED_SUN,
+    theme=theme.DARK_THEME,
+)
+
 COLOR_SCHEMES = [
     PANEL_COLOR_SCHEME,
     CHESTERISH_COLOR_SCHEME,
     ANGULAR_DARK_COLOR_SCHEME,
+    ORSTED_LIGHT,
+    ORSTED_DARK,
 ]

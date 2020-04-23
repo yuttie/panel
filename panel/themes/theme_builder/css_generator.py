@@ -106,6 +106,17 @@ color: {self.color_scheme.theme.foreground.base} !important;
     color:  {self.color_scheme.primary.contrast_500};
     border-color:  {self.color_scheme.primary.color_500};
 }}
+
+input:not([disabled]).bk.bk-input.flatpickr-input{{
+    border: 1px solid {self.color_scheme.theme.foreground.disabled_text};
+    border-radius: 4px;
+}}
+
+.flatpickr-day.selected, .flatpickr-day.selected:hover {{
+    background: {self.color_scheme.primary.color_500};
+    border-color: {self.color_scheme.primary.color_500};
+    color: {self.color_scheme.primary.contrast_500};
+}}
 """
         panel_css += self._get_panel_button_outlined_css(button_type="default", color=self.color_scheme.theme.foreground.base, border_color=self.color_scheme.theme.foreground.disabled_text)
         panel_css += self._get_panel_button_contained_css(button_type="primary", background_color=self.color_scheme.primary.color_500, color=self.color_scheme.primary.contrast_500)

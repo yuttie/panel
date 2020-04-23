@@ -36,7 +36,6 @@ panes and widgets"""
         button_warning_disabled = pn.widgets.Button(name="WARNING", button_type="warning", disabled=True)
         button_danger_disabled = pn.widgets.Button(name="DANGER", button_type="danger", disabled=True)
 
-
         buttons = pn.Row(
                 button_default,
                 button_primary,
@@ -69,6 +68,22 @@ panes and widgets"""
                 select_widget, select_widget_disabled
             )
         )
+
+    def datepicker_view(self):
+        datepicker_widget = pn.widgets.DatePicker(
+            name="Select", options=["Biology", "Chemistry", "Physics"]
+        )
+        datepicker_widget_disabled = pn.widgets.DatePicker(
+            name="Select", options=["Biology", "Chemistry", "Physics"], disabled=True
+        )
+        return pn.Column(
+            "### DatePicker",
+            pn.Row(
+                datepicker_widget, datepicker_widget_disabled
+            )
+        )
+
+
 
     def dataframe_view(self):
         dataframe_pane = pn.pane.DataFrame(pd.DataFrame({"x": [1] * 4, "y": ["y"] * 4}))
@@ -152,6 +167,7 @@ print("Hello Panel World")
             """,
             self.button_view(),
             self.select_view(),
+            self.datepicker_view(),
             self.dataframe_view(),
             self.plot_view(),
             min_height=800,
