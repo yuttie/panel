@@ -8,7 +8,7 @@ from collections import defaultdict, namedtuple
 
 import param
 
-from bokeh.models import Column as BkColumn, Row as BkRow
+from bokeh.models import Column as BkColumn, Row as BkRow, Widget as BkWidget
 
 from ..io.model import hold
 from ..io.state import state
@@ -29,6 +29,9 @@ class Panel(Reactive):
     __abstract = True
 
     _rename = {'objects': 'children'}
+
+    # Modifiers to apply to children: {Model: {property: value}}
+    _modifiers = {}
 
     _linked_props = []
 
@@ -102,6 +105,15 @@ class Panel(Reactive):
                     child = pane._get_model(doc, root, model, comm)
                 except RerenderError:
                     return self._get_objects(model, current_objects[:i], doc, root, comm)
+
+                # Apply modifiers to child
+                for model_type, props in self._modifiers.items():
+                    if isinstance(child, model_type):
+                        overrides = {
+                            k: v for k, v in props.items()
+                            if getattr(pane, k, False) is None
+                        }
+                        child.update(**overrides)
             new_models.append(child)
         return new_models
 
@@ -631,6 +643,8 @@ class Row(ListPanel):
     _bokeh_model = BkRow
 
     _rename = dict(ListPanel._rename, col_sizing='cols')
+
+    _modifiers = {BkWidget: {'align': 'end'}}
 
 
 class Column(ListPanel):

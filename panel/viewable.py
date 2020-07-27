@@ -39,7 +39,7 @@ class Layoutable(param.Parameterized):
     for all Panel components with a visual representation.
     """
 
-    align = param.ObjectSelector(default='start',
+    align = param.ObjectSelector(default=None,
                                  objects=['start', 'end', 'center'], doc="""
         Whether the object should be aligned with the start, end or
         center of its container""")
