@@ -22,7 +22,7 @@ const eventCategoryTransforms: any = {
     ctrlKey: event.ctrlKey,
     key: event.key,
     keyCode: event.keyCode,
-    locale: event.locale,
+    locale: event.locale || null,
     location: event.location,
     metaKey: event.metaKey,
     repeat: event.repeat,
