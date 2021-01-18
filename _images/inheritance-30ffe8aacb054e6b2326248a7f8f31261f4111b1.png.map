@@ -1,0 +1,8 @@
+<map id="inheritancedcf9264c51" name="inheritancedcf9264c51">
+<area shape="rect" id="node1" title="An Application is a factory for Document instances." alt="" coords="5,104,296,129"/>
+<area shape="rect" id="node2" href="#panel.io.server.Application" target="_top" title="panel.io.server.Application" alt="" coords="378,104,573,129"/>
+<area shape="rect" id="node3" href="#panel.io.server.ProxyFallbackHandler" target="_top" title="A `RequestHandler` that wraps another HTTP server callback and" alt="" coords="344,55,607,80"/>
+<area shape="rect" id="node4" title="Base class for HTTP request handlers." alt="" coords="45,55,256,80"/>
+<area shape="rect" id="node5" href="#panel.io.server.StoppableThread" target="_top" title="Thread class with a stop() method." alt="" coords="359,5,591,31"/>
+<area shape="rect" id="node6" title="A class that represents a thread of control." alt="" coords="84,5,217,31"/>
+</map>

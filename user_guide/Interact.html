@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Interact — Panel 0.10.3 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/css/main.css" rel="stylesheet"/>
+<link href="../_static/nbsite.css" rel="stylesheet"/>
+<link href="../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/user_guide/Interact.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../index.html">
+<img alt="Logo" src="../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../reference/index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIs.html">APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deploy_and_Export.html">Deploy &amp; Export</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Widgets.html">Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Param.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Links.html">Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pipelines.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Server_Deployment.html">Server Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Django_Apps.html">Django Apps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="interact">
+<h1>Interact<a class="headerlink" href="#interact" title="Permalink to this headline">¶</a></h1>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Using-Interact">Using Interact<a class="anchor-link" href="#Using-Interact">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>interact</code> function (<code>panel.interact</code>) automatically creates user interface (UI) controls for exploring code and data interactively. It is the easiest way to get started using Panel, and it provides enough flexibility that it may be all you need to learn in Panel.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+
+<span class="kn">from</span> <span class="nn">panel.interact</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">interact_manual</span>
+<span class="kn">from</span> <span class="nn">panel</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="b407deb1-55ee-4208-a215-2ffd11eb9fcd"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#b407deb1-55ee-4208-a215-2ffd11eb9fcd');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.3/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.3/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="32c01fe3-03da-4438-b06c-54b97929b3ba"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#32c01fe3-03da-4438-b06c-54b97929b3ba');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Basic-interact">Basic <code>interact</code><a class="anchor-link" href="#Basic-interact">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At the most basic level, <code>interact</code> autogenerates UI controls for function arguments, and then calls the function with those arguments when you manipulate the controls interactively. To use <code>interact</code>, you need to define a function that you want to explore. Here is a function that prints its only argument <code>x</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you pass this function as the first argument to <code>interact</code> along with an integer keyword argument (<code>x=10</code>), a slider is generated and bound to the function parameter.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="8f23867a-7af2-4f2f-aa08-efdd79783bb1"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"9be901c3-7cdc-4729-9dc3-9da9ad627953":{"roots":{"references":[{"attributes":{"children":[{"id":"1005"}],"margin":[0,0,0,0],"name":"Row02884"},"id":"1004","type":"Row"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02879","text":"&lt;pre&gt;10&lt;/pre&gt;"},"id":"1005","type":"panel.models.markup.HTML"},{"attributes":{"reload":false},"id":"1007","type":"panel.models.location.Location"},{"attributes":{"end":30,"format":"0[.]00","margin":[5,10,5,10],"start":-10,"title":"x","value":10,"value_throttled":10},"id":"1003","type":"Slider"},{"attributes":{"children":[{"id":"1002"},{"id":"1004"}],"margin":[0,0,0,0],"name":"Column02880"},"id":"1001","type":"Column"},{"attributes":{"children":[{"id":"1003"}],"margin":[0,0,0,0],"name":"Column02885"},"id":"1002","type":"Column"},{"attributes":{"client_comm_id":"92adfc24162448d38fff3b0bb2bc285d","comm_id":"f1387977fe9f40598cb923267a240655","plot_id":"1001"},"id":"1006","type":"panel.models.comm_manager.CommManager"}],"root_ids":["1001","1006","1007"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"9be901c3-7cdc-4729-9dc3-9da9ad627953","root_ids":["1001"],"roots":{"1001":"8f23867a-7af2-4f2f-aa08-efdd79783bb1"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you move the slider, the function is called, which prints the current value of <code>x</code>.</p>
+<p>If you pass <code>True</code> or <code>False</code>, <code>interact</code> will generate a checkbox:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1008">
+<div class="bk-root" data-root-id="1008" id="c8ff1f6e-581a-4dc2-ba50-37d73a05a6a7"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"6dd214cd-287d-40d3-b31a-c2db0491a468":{"roots":{"references":[{"attributes":{"children":[{"id":"1012"}],"margin":[0,0,0,0],"name":"Row02894"},"id":"1011","type":"Row"},{"attributes":{"children":[{"id":"1010"}],"margin":[0,0,0,0],"name":"Column02895"},"id":"1009","type":"Column"},{"attributes":{"children":[{"id":"1009"},{"id":"1011"}],"margin":[0,0,0,0],"name":"Column02890"},"id":"1008","type":"Column"},{"attributes":{"client_comm_id":"554a95fb91be4aa3add44142d0f67d2a","comm_id":"e96473c35c144753882415014510fb7d","plot_id":"1008"},"id":"1013","type":"panel.models.comm_manager.CommManager"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02889","text":"&lt;pre&gt;True&lt;/pre&gt;"},"id":"1012","type":"panel.models.markup.HTML"},{"attributes":{"active":[0],"labels":["x"],"margin":[5,10,5,10]},"id":"1010","type":"CheckboxGroup"}],"root_ids":["1008","1013"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"6dd214cd-287d-40d3-b31a-c2db0491a468","root_ids":["1008"],"roots":{"1008":"c8ff1f6e-581a-4dc2-ba50-37d73a05a6a7"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you pass a string, <code>interact</code> will generate a text area.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'Hi there!'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1014">
+<div class="bk-root" data-root-id="1014" id="b429114f-d49e-47aa-ad28-45e60fddea0e"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"d441e909-5b72-4358-8ccf-7db1471086da":{"roots":{"references":[{"attributes":{"children":[{"id":"1015"},{"id":"1017"}],"margin":[0,0,0,0],"name":"Column02899"},"id":"1014","type":"Column"},{"attributes":{"children":[{"id":"1016"}],"margin":[0,0,0,0],"name":"Column02904"},"id":"1015","type":"Column"},{"attributes":{"children":[{"id":"1018"}],"margin":[0,0,0,0],"name":"Row02903"},"id":"1017","type":"Row"},{"attributes":{"margin":[5,10,5,10],"title":"x","value":"Hi there!"},"id":"1016","type":"TextInput"},{"attributes":{"client_comm_id":"c11393c06e0d48a7a06e241a71f9bd78","comm_id":"bb64259708d240ddbbb4433096eabcc5","plot_id":"1014"},"id":"1019","type":"panel.models.comm_manager.CommManager"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"interactive02898","text":"&lt;p&gt;Hi there!&lt;/p&gt;"},"id":"1018","type":"panel.models.markup.HTML"}],"root_ids":["1014","1019"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"d441e909-5b72-4358-8ccf-7db1471086da","root_ids":["1014"],"roots":{"1014":"b429114f-d49e-47aa-ad28-45e60fddea0e"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>interact</code> can also be used as a decorator. This allows you to define a function and how to interact with it in a single shot. As this example shows, <code>interact</code> also works with functions that have multiple arguments.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1020">
+<div class="bk-root" data-root-id="1020" id="309c77c6-0cb7-446a-a5ba-a4f9123bed6f"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"8ea1297d-1b82-4e4d-920f-90181e9ffa5e":{"roots":{"references":[{"attributes":{"children":[{"id":"1021"},{"id":"1024"}],"margin":[0,0,0,0],"name":"Column02908"},"id":"1020","type":"Column"},{"attributes":{"client_comm_id":"13e1e70db69540b3bb477f9c9ef0e150","comm_id":"8736f518c0494fcfbb9e190ae456fd65","plot_id":"1020"},"id":"1026","type":"panel.models.comm_manager.CommManager"},{"attributes":{"active":[0],"labels":["x"],"margin":[5,10,5,10]},"id":"1022","type":"CheckboxGroup"},{"attributes":{"end":3.0,"format":"0[.]00","margin":[5,10,5,10],"start":-1.0,"step":0.1,"title":"y","value":1.0,"value_throttled":1.0},"id":"1023","type":"Slider"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02907","text":"&lt;pre&gt;(True, 1.0)&lt;/pre&gt;"},"id":"1025","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1022"},{"id":"1023"}],"margin":[0,0,0,0],"name":"Column02914"},"id":"1021","type":"Column"},{"attributes":{"children":[{"id":"1025"}],"margin":[0,0,0,0],"name":"Row02913"},"id":"1024","type":"Row"}],"root_ids":["1020","1026"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"8ea1297d-1b82-4e4d-920f-90181e9ffa5e","root_ids":["1020"],"roots":{"1020":"309c77c6-0cb7-446a-a5ba-a4f9123bed6f"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Laying-out-interact-widgets">Laying out interact widgets<a class="anchor-link" href="#Laying-out-interact-widgets">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>interact</code> function returns a Panel containing the widgets and the display output. By indexing into this Panel we can lay out the objects precisely how we want:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">'**A custom interact layout**'</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">layout</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">layout</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1027">
+<div class="bk-root" data-root-id="1027" id="6e66054f-7224-49b1-bdeb-b4b633c4d88d"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"68f53a6b-6d00-4d55-8fb7-c97baf397bbf":{"roots":{"references":[{"attributes":{"margin":[5,5,5,5],"name":"interactive02917","text":"&lt;pre&gt;10&lt;/pre&gt;"},"id":"1033","type":"panel.models.markup.HTML"},{"attributes":{"end":30,"format":"0[.]00","margin":[5,10,5,10],"start":-10,"title":"x","value":10,"value_throttled":10},"id":"1031","type":"Slider"},{"attributes":{"children":[{"id":"1030"},{"id":"1032"}],"margin":[0,0,0,0],"name":"Row02924"},"id":"1029","type":"Row"},{"attributes":{"client_comm_id":"c097e999ee19423984c4b148ad6ae5f1","comm_id":"77e8601265f84ff39223ed65a894d10f","plot_id":"1027"},"id":"1034","type":"panel.models.comm_manager.CommManager"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02925","text":"&lt;p&gt;&lt;strong&gt;A custom interact layout&lt;/strong&gt;&lt;/p&gt;"},"id":"1028","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1028"},{"id":"1029"}],"margin":[0,0,0,0],"name":"Column02927"},"id":"1027","type":"Column"},{"attributes":{"children":[{"id":"1033"}],"margin":[0,0,0,0],"name":"Row02922"},"id":"1032","type":"Row"},{"attributes":{"children":[{"id":"1031"}],"margin":[0,0,0,0],"name":"Column02923"},"id":"1030","type":"Column"}],"root_ids":["1027","1034"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"68f53a6b-6d00-4d55-8fb7-c97baf397bbf","root_ids":["1027"],"roots":{"1027":"6e66054f-7224-49b1-bdeb-b4b633c4d88d"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Fixing-arguments-using-fixed">Fixing arguments using <code>fixed</code><a class="anchor-link" href="#Fixing-arguments-using-fixed">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are times when you may want to explore a function using <code>interact</code>, but fix one or more of its arguments to specific values. This can be accomplished by wrapping values with the <code>fixed</code> function.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When we call <code>interact</code>, we pass <code>fixed(20)</code> for q to hold it fixed at a value of <code>20</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1035">
+<div class="bk-root" data-root-id="1035" id="83d80ba8-ae90-41c4-b30c-4124c855e820"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"c3cf9a71-996a-442b-a39c-06fcd0d8ffe7":{"roots":{"references":[{"attributes":{"margin":[5,5,5,5],"name":"interactive02931","text":"&lt;pre&gt;(5, 20)&lt;/pre&gt;"},"id":"1039","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1036"},{"id":"1038"}],"margin":[0,0,0,0],"name":"Column02932"},"id":"1035","type":"Column"},{"attributes":{"children":[{"id":"1039"}],"margin":[0,0,0,0],"name":"Row02936"},"id":"1038","type":"Row"},{"attributes":{"client_comm_id":"b1d2fd15d727400d94f936b3b7c15e4a","comm_id":"de6bbeff5bae4768b2f49f5de09dd855","plot_id":"1035"},"id":"1040","type":"panel.models.comm_manager.CommManager"},{"attributes":{"end":15,"format":"0[.]00","margin":[5,10,5,10],"start":-5,"title":"p","value":5,"value_throttled":5},"id":"1037","type":"Slider"},{"attributes":{"children":[{"id":"1037"}],"margin":[0,0,0,0],"name":"Column02937"},"id":"1036","type":"Column"}],"root_ids":["1035","1040"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"c3cf9a71-996a-442b-a39c-06fcd0d8ffe7","root_ids":["1035"],"roots":{"1035":"83d80ba8-ae90-41c4-b30c-4124c855e820"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that a slider is only produced for <code>p</code>, as the value of <code>q</code> is fixed.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Widget-abbreviations">Widget abbreviations<a class="anchor-link" href="#Widget-abbreviations">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you pass an integer-valued keyword argument of <code>10</code> (<code>x=10</code>) to <code>interact</code>, it generates an integer-valued slider control with a range of <code>[-10,+3*10]</code>. In this case, <code>10</code> is an <em>abbreviation</em> for an actual slider widget:</p>
+<div class="highlight"><pre><span></span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+<p>In fact, we can get the same result if we pass this <code>IntSlider</code> as the keyword argument for <code>x</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">start</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1041">
+<div class="bk-root" data-root-id="1041" id="04fdc658-794a-4be9-a2e1-61aaf2d7eb1e"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"78d2686e-dcb6-4250-9a0a-dfdce0ebbe18":{"roots":{"references":[{"attributes":{"end":30,"format":"0[.]00","margin":[5,10,5,10],"start":-10,"value":10,"value_throttled":10},"id":"1043","type":"Slider"},{"attributes":{"children":[{"id":"1043"}],"margin":[0,0,0,0],"name":"Column02946"},"id":"1042","type":"Column"},{"attributes":{"children":[{"id":"1045"}],"margin":[0,0,0,0],"name":"Row02945"},"id":"1044","type":"Row"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02941","text":"&lt;pre&gt;10&lt;/pre&gt;"},"id":"1045","type":"panel.models.markup.HTML"},{"attributes":{"client_comm_id":"df2465b0fa0f4d11b4ae82d3acaf2e33","comm_id":"7e0bad678fb347349ab3ec9e9a265a36","plot_id":"1041"},"id":"1046","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1042"},{"id":"1044"}],"margin":[0,0,0,0],"name":"Column02942"},"id":"1041","type":"Column"}],"root_ids":["1041","1046"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"78d2686e-dcb6-4250-9a0a-dfdce0ebbe18","root_ids":["1041"],"roots":{"1041":"04fdc658-794a-4be9-a2e1-61aaf2d7eb1e"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This examples clarifies how <code>interact</code> proceses its keyword arguments:</p>
+<ol>
+<li>If the keyword argument is a <code>Widget</code> instance with a <code>value</code> attribute, that widget is used. Any widget with a <code>value</code> attribute can be used, even custom ones.</li>
+<li>Otherwise, the value is treated as a <em>widget abbreviation</em> that is converted to a widget before it is used.</li>
+</ol>
+<p>The following table gives an overview of different widget abbreviations:</p>
+<p><table class="table table-condensed table-bordered">
+<tr><td><strong>Keyword argument</strong></td><td><strong>Widget</strong></td></tr>
+<tr><td>True or False</td><td>Checkbox</td></tr>
+<tr><td>'Hi there'</td><td>Text</td></tr>
+<tr><td>value or (min,max,[step,[value]]) if integers are passed</td><td>IntSlider</td></tr>
+<tr><td>value or (min,max,[step,[value]]) if floats are passed</td><td>FloatSlider</td></tr>
+<tr><td>['orange','apple'] or {'one':1,'two':2}</td><td>Dropdown</td></tr>
+</table>
+Note that a dropdown is used if a list or a dict is given (signifying discrete choices), and a slider is used if a tuple is given (signifying a range).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You have seen how the checkbox and textarea widgets work above. Here, more details about the different abbreviations for sliders and dropdowns are given.</p>
+<p>If a 2-tuple of integers is passed <code>(min,max)</code>, an integer-valued slider is produced with those minimum and maximum values (inclusively). In this case, the default step size of <code>1</code> is used.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[11]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1047">
+<div class="bk-root" data-root-id="1047" id="fc6c7a59-43c8-42c6-9220-e3749cdae15d"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"b6991a2e-0a88-467b-9129-de3092067402":{"roots":{"references":[{"attributes":{"children":[{"id":"1051"}],"margin":[0,0,0,0],"name":"Row02954"},"id":"1050","type":"Row"},{"attributes":{"end":4,"format":"0[.]00","margin":[5,10,5,10],"start":0,"title":"x","value":2,"value_throttled":2},"id":"1049","type":"Slider"},{"attributes":{"children":[{"id":"1048"},{"id":"1050"}],"margin":[0,0,0,0],"name":"Column02950"},"id":"1047","type":"Column"},{"attributes":{"client_comm_id":"873ed2112a9f4eb29493570d86405ac3","comm_id":"d93789acaa634da8a5a975f1d09b4344","plot_id":"1047"},"id":"1052","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1049"}],"margin":[0,0,0,0],"name":"Column02955"},"id":"1048","type":"Column"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02949","text":"&lt;pre&gt;2&lt;/pre&gt;"},"id":"1051","type":"panel.models.markup.HTML"}],"root_ids":["1047","1052"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"b6991a2e-0a88-467b-9129-de3092067402","root_ids":["1047"],"roots":{"1047":"fc6c7a59-43c8-42c6-9220-e3749cdae15d"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If a 3-tuple of integers is passed <code>(min,max,step)</code>, the step size can also be set.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[12]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1053">
+<div class="bk-root" data-root-id="1053" id="2a7ab23a-1ccc-4977-8229-da58ee31bedc"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"aedef457-8f38-4f29-939f-14f7cbe13749":{"roots":{"references":[{"attributes":{"children":[{"id":"1057"}],"margin":[0,0,0,0],"name":"Row02963"},"id":"1056","type":"Row"},{"attributes":{"client_comm_id":"0ddcafc0fd3c4924bfe991cb8b695510","comm_id":"d7cd340718c9433e8787f67b43b38bf2","plot_id":"1053"},"id":"1058","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1055"}],"margin":[0,0,0,0],"name":"Column02964"},"id":"1054","type":"Column"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02958","text":"&lt;pre&gt;4&lt;/pre&gt;"},"id":"1057","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1054"},{"id":"1056"}],"margin":[0,0,0,0],"name":"Column02959"},"id":"1053","type":"Column"},{"attributes":{"end":8,"format":"0[.]00","margin":[5,10,5,10],"start":0,"step":2,"title":"x","value":4,"value_throttled":4},"id":"1055","type":"Slider"}],"root_ids":["1053","1058"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"aedef457-8f38-4f29-939f-14f7cbe13749","root_ids":["1053"],"roots":{"1053":"2a7ab23a-1ccc-4977-8229-da58ee31bedc"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A float-valued slider is produced if the elements of the tuples are floats. Here the minimum is <code>0.0</code>, the maximum is <code>10.0</code> and step size is <code>0.1</code> (the default).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[13]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1059">
+<div class="bk-root" data-root-id="1059" id="9210c369-1907-461f-93f8-321c115eb435"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"08424b8a-65c4-4405-afc1-fa0538ac5044":{"roots":{"references":[{"attributes":{"children":[{"id":"1061"}],"margin":[0,0,0,0],"name":"Column02973"},"id":"1060","type":"Column"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02967","text":"&lt;pre&gt;5.0&lt;/pre&gt;"},"id":"1063","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1060"},{"id":"1062"}],"margin":[0,0,0,0],"name":"Column02968"},"id":"1059","type":"Column"},{"attributes":{"client_comm_id":"e16b301c5d2e4c5a8cad29c02fb2fcae","comm_id":"8de26839bce746aba441e60827cfcd82","plot_id":"1059"},"id":"1064","type":"panel.models.comm_manager.CommManager"},{"attributes":{"end":10.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.1,"title":"x","value":5.0,"value_throttled":5.0},"id":"1061","type":"Slider"},{"attributes":{"children":[{"id":"1063"}],"margin":[0,0,0,0],"name":"Row02972"},"id":"1062","type":"Row"}],"root_ids":["1059","1064"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"08424b8a-65c4-4405-afc1-fa0538ac5044","root_ids":["1059"],"roots":{"1059":"9210c369-1907-461f-93f8-321c115eb435"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The step size can be changed by passing a third element in the tuple.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[14]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1065">
+<div class="bk-root" data-root-id="1065" id="f7b8bc12-e480-4fa2-af1c-2b34f52c56ea"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"a7c3e460-6df0-445c-bedb-ab76b4e852c6":{"roots":{"references":[{"attributes":{"end":10.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.01,"title":"x","value":5.0,"value_throttled":5.0},"id":"1067","type":"Slider"},{"attributes":{"children":[{"id":"1067"}],"margin":[0,0,0,0],"name":"Column02982"},"id":"1066","type":"Column"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02976","text":"&lt;pre&gt;5.0&lt;/pre&gt;"},"id":"1069","type":"panel.models.markup.HTML"},{"attributes":{"client_comm_id":"f73143524ce74f619c2f1d80150f3dbe","comm_id":"15b06c9d671043859cf946450078c529","plot_id":"1065"},"id":"1070","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1069"}],"margin":[0,0,0,0],"name":"Row02981"},"id":"1068","type":"Row"},{"attributes":{"children":[{"id":"1066"},{"id":"1068"}],"margin":[0,0,0,0],"name":"Column02977"},"id":"1065","type":"Column"}],"root_ids":["1065","1070"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"a7c3e460-6df0-445c-bedb-ab76b4e852c6","root_ids":["1065"],"roots":{"1065":"f7b8bc12-e480-4fa2-af1c-2b34f52c56ea"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For both integer and float-valued sliders, you can pick the initial value of the widget by supplying a default keyword argument when you define the underlying Python function. Here we set the initial value of a float slider to <code>5.5</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[15]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1071">
+<div class="bk-root" data-root-id="1071" id="244ca424-35d8-455a-aa51-64830e5bf623"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"83a9e99d-1bf3-4810-b69c-fb5ace8acc0d":{"roots":{"references":[{"attributes":{"children":[{"id":"1072"},{"id":"1074"}],"margin":[0,0,0,0],"name":"Column02986"},"id":"1071","type":"Column"},{"attributes":{"end":20.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.5,"title":"x","value":5.5,"value_throttled":10.0},"id":"1073","type":"Slider"},{"attributes":{"children":[{"id":"1073"}],"margin":[0,0,0,0],"name":"Column02991"},"id":"1072","type":"Column"},{"attributes":{"client_comm_id":"5d87d5b6027043cb8bad07426cb82115","comm_id":"3027250bdbb3442f94544506973583db","plot_id":"1071"},"id":"1076","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1075"}],"margin":[0,0,0,0],"name":"Row02990"},"id":"1074","type":"Row"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02985","text":"&lt;pre&gt;5.5&lt;/pre&gt;"},"id":"1075","type":"panel.models.markup.HTML"}],"root_ids":["1071","1076"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"83a9e99d-1bf3-4810-b69c-fb5ace8acc0d","root_ids":["1071"],"roots":{"1071":"244ca424-35d8-455a-aa51-64830e5bf623"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also set the initial value by passing a fourth element in the tuple.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[16]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1077">
+<div class="bk-root" data-root-id="1077" id="128f4c3d-9dec-4ca5-bc5c-d58c9d179d08"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"accff4ca-177f-4722-a74f-427773531bf2":{"roots":{"references":[{"attributes":{"client_comm_id":"35a9cc03957e4b57bb43e7ccbe553671","comm_id":"6bcff1a082314c3e937d121c7caf16d7","plot_id":"1077"},"id":"1082","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1081"}],"margin":[0,0,0,0],"name":"Row02999"},"id":"1080","type":"Row"},{"attributes":{"children":[{"id":"1079"}],"margin":[0,0,0,0],"name":"Column03000"},"id":"1078","type":"Column"},{"attributes":{"margin":[5,5,5,5],"name":"interactive02994","text":"&lt;pre&gt;5.5&lt;/pre&gt;"},"id":"1081","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1078"},{"id":"1080"}],"margin":[0,0,0,0],"name":"Column02995"},"id":"1077","type":"Column"},{"attributes":{"end":20.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.5,"title":"x","value":5.5,"value_throttled":5.5},"id":"1079","type":"Slider"}],"root_ids":["1077","1082"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"accff4ca-177f-4722-a74f-427773531bf2","root_ids":["1077"],"roots":{"1077":"128f4c3d-9dec-4ca5-bc5c-d58c9d179d08"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>None</code> as the third element to just set min, max, and value.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[17]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1083">
+<div class="bk-root" data-root-id="1083" id="9f842c45-d303-4869-b84d-6a49dddf33f4"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"361fc858-6e00-4f4e-8a35-b0cc3454c6a7":{"roots":{"references":[{"attributes":{"children":[{"id":"1087"}],"margin":[0,0,0,0],"name":"Row03008"},"id":"1086","type":"Row"},{"attributes":{"children":[{"id":"1084"},{"id":"1086"}],"margin":[0,0,0,0],"name":"Column03004"},"id":"1083","type":"Column"},{"attributes":{"client_comm_id":"7ab8e858414748aa8da6f5c184b4f87c","comm_id":"ce1abe374e4f4b36bfe98c9baad18e09","plot_id":"1083"},"id":"1088","type":"panel.models.comm_manager.CommManager"},{"attributes":{"end":20.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.1,"title":"x","value":5.5,"value_throttled":5.5},"id":"1085","type":"Slider"},{"attributes":{"children":[{"id":"1085"}],"margin":[0,0,0,0],"name":"Column03009"},"id":"1084","type":"Column"},{"attributes":{"margin":[5,5,5,5],"name":"interactive03003","text":"&lt;pre&gt;5.5&lt;/pre&gt;"},"id":"1087","type":"panel.models.markup.HTML"}],"root_ids":["1083","1088"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"361fc858-6e00-4f4e-8a35-b0cc3454c6a7","root_ids":["1083"],"roots":{"1083":"9f842c45-d303-4869-b84d-6a49dddf33f4"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dropdown menus are constructed by passing a list of strings. In this case, the strings are both used as the names in the dropdown menu UI and passed to the underlying Python function.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="s1">'apples'</span><span class="p">,</span> <span class="s1">'oranges'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[18]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1089">
+<div class="bk-root" data-root-id="1089" id="aff16a99-29a9-4afe-a87e-c4d4db2e589c"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"793c1892-47a0-4b1b-92c8-e0938687b808":{"roots":{"references":[{"attributes":{"children":[{"id":"1093"}],"margin":[0,0,0,0],"name":"Row03017"},"id":"1092","type":"Row"},{"attributes":{"children":[{"id":"1090"},{"id":"1092"}],"margin":[0,0,0,0],"name":"Column03013"},"id":"1089","type":"Column"},{"attributes":{"children":[{"id":"1091"}],"margin":[0,0,0,0],"name":"Column03018"},"id":"1090","type":"Column"},{"attributes":{"client_comm_id":"683f90f47f764b6893ee28c803c7f519","comm_id":"9057e1a64a88446a91e14c29d196229f","plot_id":"1089"},"id":"1094","type":"panel.models.comm_manager.CommManager"},{"attributes":{"margin":[5,10,5,10],"options":["apples","oranges"],"title":"x","value":"apples"},"id":"1091","type":"Select"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"interactive03012","text":"&lt;p&gt;apples&lt;/p&gt;"},"id":"1093","type":"panel.models.markup.HTML"}],"root_ids":["1089","1094"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"793c1892-47a0-4b1b-92c8-e0938687b808","root_ids":["1089"],"roots":{"1089":"aff16a99-29a9-4afe-a87e-c4d4db2e589c"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When working with numeric data <code>interact</code> will automatically add a discrete slider:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="nb">dict</span><span class="p">([(</span><span class="s1">'one'</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s1">'two'</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[19]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1095">
+<div class="bk-root" data-root-id="1095" id="5052bf9b-b7e6-4331-92a8-8c22d7eb221f"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"6dd9d8d4-038c-4fa0-85b3-5f8a1c804f6c":{"roots":{"references":[{"attributes":{"client_comm_id":"13bf2fba088f4fde85e0ad8db0e4c876","comm_id":"ca8fad8e9d654ecfbbd586a58c72be96","plot_id":"1095"},"id":"1103","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1096"},{"id":"1100"}],"margin":[0,0,0,0],"name":"Column03022"},"id":"1095","type":"Column"},{"attributes":{"children":[{"id":"1101"}],"margin":[0,0,0,0],"name":"Row03033"},"id":"1100","type":"Row"},{"attributes":{"args":{"bidirectional":false,"properties":{},"source":{"id":"1099"},"target":{"id":"1098"}},"code":"try { \n    var labels = ['x: <b>one</b>', 'x: <b>two</b>']\n    target.text = labels[source.value]\n     } catch(err) { console.log(err) }","tags":[139989040025808]},"id":"1102","type":"CustomJS"},{"attributes":{"children":[{"id":"1097"}],"margin":[0,0,0,0],"name":"Column03034"},"id":"1096","type":"Column"},{"attributes":{"margin":[5,0,0,10],"name":"","style":{"white-space":"nowrap"},"text":"x: <b>one</b>"},"id":"1098","type":"Div"},{"attributes":{"children":[{"id":"1098"},{"id":"1099"}],"margin":[0,0,0,0],"name":"Column03028"},"id":"1097","type":"Column"},{"attributes":{"margin":[5,5,5,5],"name":"interactive03021","text":"&lt;pre&gt;10&lt;/pre&gt;"},"id":"1101","type":"panel.models.markup.HTML"},{"attributes":{"end":1,"format":"0[.]00","js_property_callbacks":{"change:value":[{"id":"1102"}]},"margin":[0,10,5,10],"show_value":false,"start":0,"tooltips":false,"value":0,"value_throttled":0},"id":"1099","type":"Slider"}],"root_ids":["1095","1103"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"6dd9d8d4-038c-4fa0-85b3-5f8a1c804f6c","root_ids":["1095"],"roots":{"1095":"5052bf9b-b7e6-4331-92a8-8c22d7eb221f"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Disabling-continuous-updates-for-slider-widgets">Disabling continuous updates for slider widgets<a class="anchor-link" href="#Disabling-continuous-updates-for-slider-widgets">¶</a></h2><p>When interacting with functions which takes a long time to run, realtime feedback can be a burden instead of being helpful.</p>
+<p>If you are using slider widgets and you have a function which takes long time to calculate, you can set the keyword argument <code>throttled</code> to <code>True</code> in <code>interact</code>. This will then first run the function after the release of the mouse button.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">),</span> <span class="n">throttled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[20]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1104">
+<div class="bk-root" data-root-id="1104" id="e4c99191-26cd-45c4-b62b-ddec2754b88e"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"656c28b3-bb46-4c75-8d7a-2eb5b9917d81":{"roots":{"references":[{"attributes":{"end":20.0,"format":"0[.]00","margin":[5,10,5,10],"start":0.0,"step":0.1,"title":"x","value":5.5,"value_throttled":5.5},"id":"1106","type":"Slider"},{"attributes":{"children":[{"id":"1105"},{"id":"1107"}],"margin":[0,0,0,0],"name":"Column03038"},"id":"1104","type":"Column"},{"attributes":{"children":[{"id":"1106"}],"margin":[0,0,0,0],"name":"Column03043"},"id":"1105","type":"Column"},{"attributes":{"client_comm_id":"33772570dcd24c9895cd43ea90b66612","comm_id":"46d3c33f321443b1b63f4cca725fb94c","plot_id":"1104"},"id":"1109","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1108"}],"margin":[0,0,0,0],"name":"Row03042"},"id":"1107","type":"Row"},{"attributes":{"margin":[5,5,5,5],"name":"interactive03037","text":"&lt;pre&gt;5.5&lt;/pre&gt;"},"id":"1108","type":"panel.models.markup.HTML"}],"root_ids":["1104","1109"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"656c28b3-bb46-4c75-8d7a-2eb5b9917d81","root_ids":["1104"],"roots":{"1104":"e4c99191-26cd-45c4-b62b-ddec2754b88e"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="scroller-right">
+This web page was generated from a Jupyter notebook and not all
+interactivity will work on this website. <a href="https://raw.githubusercontent.com/holoviz/panel/master/examples/user_guide/Interact.ipynb">Right click to download and run locally</a> for full
+Python-backed interactivity.
+</div><hr class="docutils"/>
+<p><a class="reference external" href="https://raw.githubusercontent.com/holoviz/panel/master/examples/user_guide/Interact.ipynb">Right click to download this notebook from GitHub.</a></p>
+</div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2', { 'anonymize_ip': true });
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

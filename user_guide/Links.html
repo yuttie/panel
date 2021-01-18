@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8"/>
+<title>Links — Panel 0.10.3 documentation</title>
+<meta content="High-level dashboarding for python visualization libraries" name="description"/>
+<meta content="Panel contributors" name="author"/>
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/css/main.css" rel="stylesheet"/>
+<link href="../_static/nbsite.css" rel="stylesheet"/>
+<link href="../_static/site.css" rel="stylesheet"/>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript">
+</script>
+<script src="../_static/js/main.js"></script>
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="../_static/favicon.ico" rel="icon" type="image/png"/>
+<!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="https://panel.holoviz.org/user_guide/Links.html" rel="canonical">
+</link></head>
+<body class="">
+<header class="navigation">
+<div class="wrapper">
+<a class="logo" href="../index.html">
+<img alt="Logo" src="../_static/logo_horizontal.png"/>
+</a>
+<a class="navigation-menu-button" href="javascript:void(0)" id="js-mobile-menu">Menu</a>
+<nav>
+<ul class="navigation-menu show" id="js-navigation-menu">
+<li class="nav-link doc-head"><a href="//discourse.holoviz.org">Discourse</a></li>
+<li class="nav-link doc-head"><a href="//twitter.com/Panel_org">Twitter</a></li>
+<li class="nav-link doc-head"><a href="//github.com/pyviz/panel">Github</a></li>
+<li class="nav-link">
+<div style="display:inline-block;vertical-align: middle;">
+<div class="search-bar">
+<form action="../search.html" method="get" role="search">
+<input name="q" placeholder="Search" type="search"/>
+<button type="submit">
+<img alt="Search Icon" src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png"/>
+</button>
+</form>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="second-nav">
+<nav>
+<ul class="navigation-menu show">
+<li class="nav-link doc-head"><a href="../getting_started/index.html">Getting started</a></li>
+<li class="nav-link doc-head"><a href="index.html">User Guide</a></li>
+<li class="nav-link doc-head"><a href="../gallery/index.html">Gallery</a></li>
+<li class="nav-link doc-head"><a href="../reference/index.html">Reference Gallery</a></li>
+<li class="nav-link doc-head"><a href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="nav-link doc-head"><a href="../releases.html">Releases</a></li>
+<li class="nav-link doc-head"><a href="../api/index.html">API</a></li>
+<li class="nav-link doc-head"><a href="../FAQ.html">FAQ</a></li>
+<li class="nav-link doc-head"><a href="../about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+<div class="docs section">
+<div id="hacketyhackhack"> <!-- style="width:20%;margin-right: 100px;"> --> <!--style="display: none;"> style="display:none;"> -->
+<div class="toc" style="width:15%; margin-right:20px;">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIs.html">APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Deploy_and_Export.html">Deploy &amp; Export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interact.html">Interact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Widgets.html">Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Param.html">Parameters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pipelines.html">Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Server_Deployment.html">Server Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Django_Apps.html">Django Apps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery/index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Comparisons.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Roadmap.html">Road Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/pyviz/panel">Github source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="content"> <!-- style="max-width:80%;margin-left:auto;margin-right: auto;">-->
+<div class="section" id="links">
+<h1>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h1>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Linking-objects-in-Panel">Linking objects in Panel<a class="anchor-link" href="#Linking-objects-in-Panel">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the <a href="Param.html">Param user guide</a>, we have seen how Parameterized classes can be used to automatically generate a graphical user interface for Python code without any additional effort. If you need full control over how your GUI is set up, you can instead manually define widgets linking directly to other objects using either Python or JavaScript (JS) callbacks. Python callbacks are simple for Python users to write and can directly access Python data structures, while JS callbacks can directly manipulate the displayed HTML document and allow setting up dynamic behavior even for exported HTML files (with no Python process running).</p>
+<p>Here we will show how to link parameters of Panel objects, typically from widgets to other objects. To do this, we will introduce three API calls:</p>
+<ul>
+<li><code>obj.link</code>: convenient high-level API to link objects via Python calls</li>
+<li><code>obj.param.watch</code>: powerful but lower-level Python API provided by <a href="https://param.pyviz.org">param</a> </li>
+<li><code>obj.jslink</code>: high-level API to link objects via JS code</li>
+<li><code>obj.jscallback</code>: a lower-level API to define arbitrary Javascript callbacks</li>
+</ul>
+<p>At the end of this notebook, we will then show how to use these APIs to set up links between widgets and plots that work even in exported HTML files where the Python process is no longer available.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div id="154627a5-83db-48b5-8d36-d796cd84e0ef"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#154627a5-83db-48b5-8d36-d796cd84e0ef');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.3.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.3.min.js", "https://unpkg.com/@holoviz/panel@^0.10.3/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.3/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/dataframe.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/json.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div id="2c0cfeea-ba38-45d2-a043-446e9a45c3fa"></div>
+<div class="output_subarea output_javascript">
+<script type="text/javascript">
+var element = $('#2c0cfeea-ba38-45d2-a043-446e9a45c3fa');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Python-links-using-the-link-method">Python links using the <code>link</code> method<a class="anchor-link" href="#Python-links-using-the-link-method">¶</a></h2><p>To start, let's see how a <code>TextInput</code> widget and a <code>Markdown</code> pane normally behave:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">"Editable text"</span><span class="p">),</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">'Some markdown'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1001">
+<div class="bk-root" data-root-id="1001" id="4c33dfe1-1cf5-4b8c-b06d-29b6383fed65"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"27dfd937-cdef-4121-a6ab-91728fed1531":{"roots":{"references":[{"attributes":{"children":[{"id":"1002"},{"id":"1003"}],"margin":[0,0,0,0],"name":"Row02882"},"id":"1001","type":"Row"},{"attributes":{"client_comm_id":"9ed84a52db394f9f882ef21fcd31594a","comm_id":"84eeac4b6c5540a58b52cf226c758148","plot_id":"1001"},"id":"1004","type":"panel.models.comm_manager.CommManager"},{"attributes":{"reload":false},"id":"1005","type":"panel.models.location.Location"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02880","text":"&lt;p&gt;Some markdown&lt;/p&gt;"},"id":"1003","type":"panel.models.markup.HTML"},{"attributes":{"margin":[5,10,5,10],"value":"Editable text"},"id":"1002","type":"TextInput"}],"root_ids":["1001","1004","1005"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"27dfd937-cdef-4121-a6ab-91728fed1531","root_ids":["1001"],"roots":{"1001":"4c33dfe1-1cf5-4b8c-b06d-29b6383fed65"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These two Panel objects are entirely independent; text can be entered into the input area and separately the Markdown pane will display its argument.</p>
+<p>What if we wanted connected input and output displays?  One option when you expect to have a live Python process available is to use the <code>link</code> method on Widgets to link its parameters to some other Panel object. In the simplest case we simply provide the <code>target</code> object and define the mapping between the source and target parameters as the keywords. In this case, we map the <code>value</code> parameter on the <code>TextInput</code> widget to the <code>object</code> parameter on the <code>Markdown</code> pane:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">markdown</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"Some text"</span><span class="p">)</span>
+<span class="n">text_input</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">markdown</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+
+<span class="n">text_input</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'object'</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">text_input</span><span class="p">,</span> <span class="n">markdown</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1006">
+<div class="bk-root" data-root-id="1006" id="3ce3a995-bebe-4d1d-b980-78c9a21e516b"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"d5ed7a9d-080a-4c07-a417-8b8e256abd73":{"roots":{"references":[{"attributes":{"margin":[5,10,5,10],"value":"Some text"},"id":"1007","type":"TextInput"},{"attributes":{"client_comm_id":"abc016bfc2684f5d8fd0fbeab3990781","comm_id":"26408b5c709b4948ab9d2ca915299212","plot_id":"1006"},"id":"1009","type":"panel.models.comm_manager.CommManager"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02886","text":"&lt;p&gt;Some text&lt;/p&gt;"},"id":"1008","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1007"},{"id":"1008"}],"margin":[0,0,0,0],"name":"Row02889"},"id":"1006","type":"Row"}],"root_ids":["1006","1009"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"d5ed7a9d-080a-4c07-a417-8b8e256abd73","root_ids":["1006"],"roots":{"1006":"3ce3a995-bebe-4d1d-b980-78c9a21e516b"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, if Python is running and you type something in the box above and press Return, the corresponding Markdown pane should update to match.  And if you use Python to directly manipulate the value of the text input (e.g. by editing the following cell to have new text in it and then executing it), then the Markdown should also update to match:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">text_input</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">'Some text'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For more complex mappings between the widget value and the target parameter, we can define an arbitrary transformation as a Python callback:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="n">target</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'!!!'</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">{</span><span class="s1">'value'</span><span class="p">:</span> <span class="n">callback</span><span class="p">})</span>
+<span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="o">=</span><span class="s2">"Some text"</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1010">
+<div class="bk-root" data-root-id="1010" id="d02d2aec-485c-4d23-a2c4-b947c6b05cd9"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"68b68907-3c03-4dac-b354-02a835486f23":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02892","text":"&lt;p&gt;SOME TEXT!!!&lt;/p&gt;"},"id":"1012","type":"panel.models.markup.HTML"},{"attributes":{"margin":[5,10,5,10],"value":"Some text"},"id":"1011","type":"TextInput"},{"attributes":{"children":[{"id":"1011"},{"id":"1012"}],"margin":[0,0,0,0],"name":"Row02895"},"id":"1010","type":"Row"},{"attributes":{"client_comm_id":"9531df29375a4a39bbf95e74c0f7ef21","comm_id":"7e6ca5d5256c4a33a986ea4d2b8e35e8","plot_id":"1010"},"id":"1013","type":"panel.models.comm_manager.CommManager"}],"root_ids":["1010","1013"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"68b68907-3c03-4dac-b354-02a835486f23","root_ids":["1010"],"roots":{"1010":"d02d2aec-485c-4d23-a2c4-b947c6b05cd9"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that here we explicitly set <code>t.value</code> before displaying the panel to trigger the linked Markdown pane to update to match the text widget; callbacks are not otherwise triggered when the links are first set up.</p>
+<h2 id="Python-links-using-the-watch-method">Python links using the <code>watch</code> method<a class="anchor-link" href="#Python-links-using-the-watch-method">¶</a></h2><p>The <code>link</code> method used above provides a high-level API to link to parameters, which is adequate in most cases. If we need more control, we can fall back to the underlying <code>param.watch</code> method, which is what Panel uses internally to make all reactive features work. The main differences are that <code>watch</code> 1) does not assume you are linking two objects, providing more control over what you are watching, 2) allows batched callbacks when multiple parameters change at once, and 3) allows you to specify that an event should be triggered every time the parameter is set (instead of the default of only when the parameter value actually changes). If you do not need this level of control, just skip to the <a href="#Linking-objects-in-JS">Linking objects in JS</a> section below.</p>
+<p>To demonstrate <code>param.watch</code>, let us set up three different models: 1) a <code>Markdown</code> pane to display the possible options, 2) a <code>Markdown</code> pane to display the <em>selected</em> options, and 3) a <code>ToggleGroup</code> widget that allows us to toggle between a number of options:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">selections</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">selected</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">object</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">toggle</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">ToggleGroup</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Defining-a-callback">Defining a callback<a class="anchor-link" href="#Defining-a-callback">¶</a></h4><p>Next we define a callback that can handle multiple parameter changes at once and uses the <code>Event</code>'s <code>name</code> to figure out how to process the event. In this case it updates either the <code>selections</code> or the <code>selected</code> pane depending on whether ToggleGroup <code>options</code> or <code>value</code> changed:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">events</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">'options'</span><span class="p">:</span>
+            <span class="n">selections</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="s1">'Possible options: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">'value'</span><span class="p">:</span>
+            <span class="n">selected</span><span class="o">.</span><span class="n">object</span> <span class="o">=</span> <span class="s1">'Selected: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Event-objects">Event objects<a class="anchor-link" href="#Event-objects">¶</a></h4><p>Before going any further let us discover what these <code>Event</code> objects are. An <code>Event</code> is used to signal the change in a parameter value. Event objects provide a number of useful attributes that provides additional information about the event:</p>
+<ul>
+<li><strong><code>name</code></strong>: The name of the parameter that has changed</li>
+<li><strong><code>new</code></strong>: The new value of the parameter</li>
+<li><strong><code>old</code></strong>: The old value of the parameter before the event was triggered</li>
+<li><strong><code>type</code></strong>: The type of event ('triggered', 'changed', or 'set')</li>
+<li><strong><code>what</code></strong>: Describes what about the parameter changed (usually the value but other parameter attributes can also change)</li>
+<li><strong><code>obj</code></strong>: The Parameterized instance that holds the parameter</li>
+<li><strong><code>cls</code></strong>: The Parameterized class that holds the parameter</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Registering-a-watcher">Registering a watcher<a class="anchor-link" href="#Registering-a-watcher">¶</a></h4><p>Now that we know how to define a callback and make use of <code>Event</code> attributes, it is time to register the callback. The <code>obj.param.watch</code> method lets us supply the callback along with the parameters we want to watch. Additionally we can declare whether the events should only be triggered when the parameter value changes, or every time the parameter is set:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">watcher</span> <span class="o">=</span> <span class="n">toggle</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="p">[</span><span class="s1">'options'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">],</span> <span class="n">onlychanged</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let us display the widget alongside the <code>Markdown</code> panes that reflect the current state of the widget:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">toggle</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="n">selections</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">Spacer</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="n">selected</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1014">
+<div class="bk-root" data-root-id="1014" id="8a800501-8e6a-46eb-a494-6082ff7d6a4a"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"a940da46-7ece-4b19-abb8-7557d02ca1ff":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02898"},"id":"1017","type":"panel.models.markup.HTML"},{"attributes":{"children":[{"id":"1016"}],"height":50,"margin":[0,0,0,0],"name":"Column02903","sizing_mode":"fixed","width":200},"id":"1015","type":"Column"},{"attributes":{"labels":["A","B"],"margin":[5,10,5,10]},"id":"1016","type":"CheckboxButtonGroup"},{"attributes":{"client_comm_id":"2458a668b1524149af8c4b499e5e4a2e","comm_id":"4add2aed3e6d4d40824568ab623f8383","plot_id":"1014"},"id":"1020","type":"panel.models.comm_manager.CommManager"},{"attributes":{"height":50,"margin":[5,5,5,5],"name":"Spacer02904","sizing_mode":"fixed","width":50},"id":"1018","type":"Spacer"},{"attributes":{"children":[{"id":"1015"},{"id":"1017"},{"id":"1018"},{"id":"1019"}],"margin":[0,0,0,0],"name":"Row02905"},"id":"1014","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02900"},"id":"1019","type":"panel.models.markup.HTML"}],"root_ids":["1014","1020"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"a940da46-7ece-4b19-abb8-7557d02ca1ff","root_ids":["1014"],"roots":{"1014":"8a800501-8e6a-46eb-a494-6082ff7d6a4a"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To initialize the <code>selections</code> and <code>selected</code> we can explicitly <code>trigger</code> options and value events:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">toggle</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">trigger</span><span class="p">(</span><span class="s1">'options'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(Event(what='value', name='options', obj=CheckButtonGroup(options=['A', 'B']), cls=CheckButtonGroup(options=['A', 'B']), old=['A', 'B'], new=['A', 'B'], type='triggered'), Event(what='value', name='value', obj=CheckButtonGroup(options=['A', 'B']), cls=CheckButtonGroup(options=['A', 'B']), old=[], new=[], type='triggered'))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also override the initial parameters using the <code>set_param</code> method:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span><span class="s1">'B'</span><span class="p">,</span><span class="s1">'C'</span><span class="p">,</span><span class="s1">'D'</span><span class="p">]</span>
+<span class="n">toggle</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">options</span><span class="p">,</span><span class="n">options</span><span class="p">)),</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">'D'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(Event(what='value', name='options', obj=CheckButtonGroup(options={'A': 'A', 'B': 'B', ...}, value=['D']), cls=CheckButtonGroup(options={'A': 'A', 'B': 'B', ...}, value=['D']), old=['A', 'B'], new={'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D'}, type='set'), Event(what='value', name='value', obj=CheckButtonGroup(options={'A': 'A', 'B': 'B', ...}, value=['D']), cls=CheckButtonGroup(options={'A': 'A', 'B': 'B', ...}, value=['D']), old=[], new=['D'], type='set'))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using <code>set_param</code> allows us to batch two separate changes (the options and the value) together, which you can see from the <code>print</code> output resulted into a single invocation of the callback.  You could instead have set them separately using the usual parameter-setting syntax <code>toggle.value=['D']; toggle.options=dict(zip(options,options))</code>, but batching them can be much more efficient for a non-trivial callback like a database query or a complex plot that needs updating.</p>
+<p>Now that the widgets are visible, you can toggle the option values and see the selected pane update in response via the callback (if Python is running).</p>
+<h4 id="Unlinking">Unlinking<a class="anchor-link" href="#Unlinking">¶</a></h4><p>If for whatever reason we want to stop watching parameter changes we can unsubscribe by passing our <code>watcher</code> (returned in the <code>watch</code> call above) to the <code>unwatch</code> method:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#toggle.param.unwatch(watcher)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Linking-objects-in-JS">Linking objects in JS<a class="anchor-link" href="#Linking-objects-in-JS">¶</a></h2><p>Linking objects in Python is often very convenient, because it allows writing code entirely in Python. However, it also requires a live Python kernel. If instead we want a static example (e.g. on a simple website or in an email) to have custom interactivity, or we simply want to avoid the overhead of having to call back into Python, we can define links in JavaScript.</p>
+<h3 id="Linking-Panel-components">Linking Panel components<a class="anchor-link" href="#Linking-Panel-components">¶</a></h3><p>To begin with let us see how we can express simple links between standard Panel components before digging into some more specific and complex examples.</p>
+<h4 id="Linking-model-properties">Linking model properties<a class="anchor-link" href="#Linking-model-properties">¶</a></h4><p>Let us start by rehashing the example from above, linking the <code>value</code> of the <code>TextInput</code> widget to the <code>object</code> property of the <code>Markdown</code> pane:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">markdown</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">'Markdown display'</span><span class="p">)</span>
+<span class="n">text_input</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">markdown</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+
+<span class="n">link</span> <span class="o">=</span> <span class="n">text_input</span><span class="o">.</span><span class="n">jslink</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'object'</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">text_input</span><span class="p">,</span> <span class="n">markdown</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[13]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1027">
+<div class="bk-root" data-root-id="1027" id="be1404d2-c5f2-4b5c-8e8d-9db0b06fa5ee"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"ab98bb71-2f9c-4fa3-bdaa-90b3d7117b36":{"roots":{"references":[{"attributes":{"args":{"bidirectional":false,"properties":{"value":"object"},"source":{"id":"1028"},"target":{"id":"1029"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['text'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set text on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['text'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140014917620368]},"id":"1030","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1030"}]},"margin":[5,10,5,10],"value":"Markdown display"},"id":"1028","type":"TextInput"},{"attributes":{"children":[{"id":"1028"},{"id":"1029"}],"margin":[0,0,0,0],"name":"Row02912"},"id":"1027","type":"Row"},{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02908","text":"Markdown display"},"id":"1029","type":"panel.models.markup.HTML"},{"attributes":{"client_comm_id":"a2fa4911c5cc4315914026712ff917bb","comm_id":"36dad03f85d641128a6bd29424a99eb6","plot_id":"1027"},"id":"1031","type":"panel.models.comm_manager.CommManager"}],"root_ids":["1027","1031"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"ab98bb71-2f9c-4fa3-bdaa-90b3d7117b36","root_ids":["1027"],"roots":{"1027":"be1404d2-c5f2-4b5c-8e8d-9db0b06fa5ee"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As you can see the signature is identical to the <code>link</code> example above, but here Panel translates the specification into a JS code snippet which syncs the properties on the underlying Bokeh properties. But now if you edit the widget and press Return, the Markdown display will automatically update even in a static HTML web page.</p>
+<h4 id="Linking-bi-directionally">Linking bi-directionally<a class="anchor-link" href="#Linking-bi-directionally">¶</a></h4><p>When you want the source and target to be linked bi-directionally, i.e. a change in one will automatically trigger a change in the other you can simply set the <code>bidirectional</code> argument:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">()</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">()</span>
+
+<span class="n">t1</span><span class="o">.</span><span class="n">jslink</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'value'</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[14]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1032">
+<div class="bk-root" data-root-id="1032" id="c3947928-c7e2-4bfe-8c24-7c05eaf1730a"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"49e49605-bd7b-4ca6-b397-013a9ede7828":{"roots":{"references":[{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1034"},"target":{"id":"1033"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140014918032592]},"id":"1036","type":"CustomJS"},{"attributes":{"args":{"bidirectional":true,"properties":{"value":"value"},"source":{"id":"1033"},"target":{"id":"1034"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['value'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set value on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['value'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140014918032592]},"id":"1035","type":"CustomJS"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1036"}]},"margin":[5,10,5,10]},"id":"1034","type":"TextInput"},{"attributes":{"children":[{"id":"1033"},{"id":"1034"}],"margin":[0,0,0,0],"name":"Row02918"},"id":"1032","type":"Row"},{"attributes":{"client_comm_id":"8309a8b66cce423e80f5c76e186b5682","comm_id":"efb1c25e92214ca58463f3f634bea670","plot_id":"1032"},"id":"1037","type":"panel.models.comm_manager.CommManager"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1035"}]},"margin":[5,10,5,10]},"id":"1033","type":"TextInput"}],"root_ids":["1032","1037"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"49e49605-bd7b-4ca6-b397-013a9ede7828","root_ids":["1032"],"roots":{"1032":"c3947928-c7e2-4bfe-8c24-7c05eaf1730a"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Linking-using-custom-JS-code">Linking using custom JS code<a class="anchor-link" href="#Linking-using-custom-JS-code">¶</a></h4><p>Since everything happens in JS for a <code>jslink</code>, we can't provide a Python callback. Instead, we can define a JS code snippet, which is executed when a property changes. E.g. we can define a little code snippet which adds HTML bold tags (<code>&lt;b&gt;</code>) around the text before setting it on the target. The code argument should map from the parameter/property on the source object to the JS code snippet to execute:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">markdown</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">"&lt;b&gt;Markdown display&lt;/b&gt;"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">text_input</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">"Markdown display"</span><span class="p">)</span>
+
+<span class="n">code</span> <span class="o">=</span> <span class="s1">'''</span>
+<span class="s1">    target.text = '&lt;b&gt;' + source.value + '&lt;/b&gt;'</span>
+<span class="s1">'''</span>
+<span class="n">link</span> <span class="o">=</span> <span class="n">text_input</span><span class="o">.</span><span class="n">jslink</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="p">{</span><span class="s1">'value'</span><span class="p">:</span> <span class="n">code</span><span class="p">})</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">text_input</span><span class="p">,</span> <span class="n">markdown</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[15]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1038">
+<div class="bk-root" data-root-id="1038" id="789579b2-60db-41e3-877e-2d48e14fb6bd"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"f7fe673c-32ec-4489-8e7c-f144ca0aa0e2":{"roots":{"references":[{"attributes":{"css_classes":["markdown"],"margin":[5,5,5,5],"name":"Markdown02921","text":"&lt;p&gt;&lt;b&gt;Markdown display&lt;/b&gt;&lt;/p&gt;","width":400},"id":"1040","type":"panel.models.markup.HTML"},{"attributes":{"js_property_callbacks":{"change:value":[{"id":"1041"}]},"margin":[5,10,5,10],"value":"Markdown display"},"id":"1039","type":"TextInput"},{"attributes":{"client_comm_id":"a040ffce209749df94f41aa9ed1e39b0","comm_id":"6d37c315e8eb41b799fa64838bfe4a40","plot_id":"1038"},"id":"1042","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1039"},{"id":"1040"}],"margin":[0,0,0,0],"name":"Row02925"},"id":"1038","type":"Row"},{"attributes":{"args":{"bidirectional":false,"properties":{},"source":{"id":"1039"},"target":{"id":"1040"}},"code":"try { \n    target.text = '<b>' + source.value + '</b>'\n } catch(err) { console.log(err) }","tags":[140014918248336]},"id":"1041","type":"CustomJS"}],"root_ids":["1038","1042"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"f7fe673c-32ec-4489-8e7c-f144ca0aa0e2","root_ids":["1038"],"roots":{"1038":"789579b2-60db-41e3-877e-2d48e14fb6bd"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here <code>source</code> and <code>target</code> are made available in the JavaScript namespace, allowing us to arbitrarily modify the models in response to property change events. Note however that the underlying Bokeh model property names may differ slightly from the naming of the parameters on Panel objects, e.g. the 'object' parameter on the Markdown pane translates to the 'text' property on the Bokeh model used to render the <code>Markdown</code>.</p>
+<p>Of course, you can still update the value from Python, and it will automatically update the linked markdown:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">text_input</span><span class="o">.</span><span class="n">value</span><span class="o">=</span><span class="s2">"Markdown display"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Open-URL">Open URL<a class="anchor-link" href="#Open-URL">¶</a></h4><p>As an example of using <code>jslink</code>, here we open a URL from the <code>TextInput</code> widget value. A new browser tab will open with the provided URL:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">button</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Open URL'</span><span class="p">,</span> <span class="n">button_type</span> <span class="o">=</span> <span class="s1">'primary'</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'URL'</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s1">'https://pyviz.org/'</span><span class="p">)</span>
+<span class="n">button</span><span class="o">.</span><span class="n">js_on_click</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">'target'</span><span class="p">:</span> <span class="n">url</span><span class="p">},</span> <span class="n">code</span><span class="o">=</span><span class="s1">'window.open(target.value)'</span><span class="p">)</span>
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[17]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1043">
+<div class="bk-root" data-root-id="1043" id="cd80f1ce-fce7-4c22-bcf4-69618b26dd80"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"97ecc8c6-1287-4dc9-9de6-cdfed41c9184":{"roots":{"references":[{"attributes":{"args":{"source":{"id":"1045"},"target":{"id":"1044"}},"code":"try { window.open(target.value) } catch(err) { console.log(err) }","tags":[140014918552272]},"id":"1046","type":"CustomJS"},{"attributes":{"margin":[5,10,5,10],"title":"URL","value":"https://pyviz.org/"},"id":"1044","type":"TextInput"},{"attributes":{"client_comm_id":"62d3104769304c9cb8d03331b52d9204","comm_id":"268c543d23794dec900eb55fec5a1862","plot_id":"1043"},"id":"1047","type":"panel.models.comm_manager.CommManager"},{"attributes":{"children":[{"id":"1044"},{"id":"1045"}],"margin":[0,0,0,0],"name":"Row02931"},"id":"1043","type":"Row"},{"attributes":{"button_type":"primary","icon":null,"js_event_callbacks":{"button_click":[{"id":"1046"}]},"label":"Open URL","margin":[5,10,5,10],"subscribed_events":["button_click"]},"id":"1045","type":"Button"}],"root_ids":["1043","1047"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"97ecc8c6-1287-4dc9-9de6-cdfed41c9184","root_ids":["1043"],"roots":{"1043":"cd80f1ce-fce7-4c22-bcf4-69618b26dd80"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Defining-Javascript-callbacks">Defining Javascript callbacks<a class="anchor-link" href="#Defining-Javascript-callbacks">¶</a></h2><p>Sometimes defining a simple link between to objects is not sufficient, e.g. when there are a number of objects involved. In these cases it is helpful to be able to define arbitrary Javascript callbacks. A very simple example is a very basic calculator which allows multiplying or adding two values, in this case we have two widgets to input numbers, a selector to pick the operation, a display for the result and a button.</p>
+<p>To implement this we define a <code>jscallback</code>, which is triggered when the <code>Button.clicks</code> property changes and provide a number of <code>args</code> allowing us to access the values of the various widgets:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">value1</span> <span class="o">=</span>   <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Spinner</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">operator</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">'*'</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">'*'</span><span class="p">,</span> <span class="s1">'+'</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">)</span>
+<span class="n">value2</span> <span class="o">=</span>   <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Spinner</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span>   <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'='</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span>   <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">'0'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">)</span>
+
+<span class="n">button</span><span class="o">.</span><span class="n">jscallback</span><span class="p">(</span><span class="n">clicks</span><span class="o">=</span><span class="s2">"""</span>
+<span class="s2">if (op.value == '*') </span>
+<span class="s2">  result.text = (v1.value * v2.value).toString()</span>
+<span class="s2">else</span>
+<span class="s2">  result.text = (v1.value + v2.value).toString()</span>
+<span class="s2">"""</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">'op'</span><span class="p">:</span> <span class="n">operator</span><span class="p">,</span> <span class="s1">'result'</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">:</span> <span class="n">value1</span><span class="p">,</span> <span class="s1">'v2'</span><span class="p">:</span> <span class="n">value2</span><span class="p">})</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">value2</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[18]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1048">
+<div class="bk-root" data-root-id="1048" id="70d7f0c2-ea5f-4db2-96b9-e92adec3b905"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"fc629771-4703-42a3-9119-3f16508bcc61":{"roots":{"references":[{"attributes":{"align":"center","margin":[5,10,5,10],"name":"","text":"0","width":50},"id":"1053","type":"Div"},{"attributes":{"client_comm_id":"448b4be9fde448b4b85c43ac588f6704","comm_id":"84ea9fd645fa438f821034f5594efda7","plot_id":"1048"},"id":"1055","type":"panel.models.comm_manager.CommManager"},{"attributes":{"format":null,"margin":[5,10,5,10],"min_width":75,"mode":"int","placeholder":"0","value":0,"value_throttled":0,"width":75},"id":"1049","type":"Spinner"},{"attributes":{"format":null,"margin":[5,10,5,10],"min_width":75,"mode":"int","placeholder":"0","value":0,"value_throttled":0,"width":75},"id":"1051","type":"Spinner"},{"attributes":{"children":[{"id":"1049"},{"id":"1050"},{"id":"1051"},{"id":"1052"},{"id":"1053"}],"margin":[0,0,0,0],"name":"Row02940"},"id":"1048","type":"Row"},{"attributes":{"align":"center","margin":[5,10,5,10],"min_width":50,"options":["*","+"],"value":"*","width":50},"id":"1050","type":"Select"},{"attributes":{"args":{"op":{"id":"1050"},"result":{"id":"1053"},"source":{"id":"1052"},"v1":{"id":"1049"},"v2":{"id":"1051"}},"code":"try { \nif (op.value == '*') \n  result.text = (v1.value * v2.value).toString()\nelse\n  result.text = (v1.value + v2.value).toString()\n } catch(err) { console.log(err) }","tags":[140014917633616]},"id":"1054","type":"CustomJS"},{"attributes":{"icon":null,"js_event_callbacks":{"button_click":[{"id":"1054"}]},"label":"=","margin":[5,10,5,10],"min_width":50,"subscribed_events":["button_click"],"width":50},"id":"1052","type":"Button"}],"root_ids":["1048","1055"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"fc629771-4703-42a3-9119-3f16508bcc61","root_ids":["1048"],"roots":{"1048":"70d7f0c2-ea5f-4db2-96b9-e92adec3b905"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Linking-Plots">Linking Plots<a class="anchor-link" href="#Linking-Plots">¶</a></h2><p>The above examples link widgets to simple static panes, but links are probably most useful when combined with dynamic objects like plots.</p>
+<h4 id="Bokeh">Bokeh<a class="anchor-link" href="#Bokeh">¶</a></h4><p>The <code>jslink</code> API trivially allows us to link a parameter on a Panel widget to a Bokeh plot property. Here we create a Bokeh Figure with a simple sine curve. The <code>jslink</code> method allows us to pass any Bokeh model held by the Figure as the <code>target</code>, then link the widget value to some property on it. E.g. here we link a <code>FloatSlider</code> value to the <code>line_width</code> of the <code>Line</code> glyph:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+
+<span class="n">width_slider</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Line Width'</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">width_slider</span><span class="o">.</span><span class="n">jslink</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">glyph</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'line_width'</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">width_slider</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[19]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1092">
+<div class="bk-root" data-root-id="1092" id="b7655d8a-595e-4786-a8a0-9edb70de3285"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"0c30ac2e-f23a-41ed-9039-2c937d101813":{"roots":{"references":[{"attributes":{"client_comm_id":"9ac6aeaba93f4db1922a0460bddbf6dc","comm_id":"bac25867183e46e3b290da6aa61ddd6c","plot_id":"1092"},"id":"1140","type":"panel.models.comm_manager.CommManager"},{"attributes":{},"id":"1061","type":"LinearScale"},{"attributes":{},"id":"1070","type":"BasicTicker"},{"attributes":{},"id":"1101","type":"UnionRenderers"},{"attributes":{"formatter":{"id":"1098"},"ticker":{"id":"1070"}},"id":"1069","type":"LinearAxis"},{"attributes":{"formatter":{"id":"1096"},"ticker":{"id":"1066"}},"id":"1065","type":"LinearAxis"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","x":{"field":"x"},"y":{"field":"y"}},"id":"1089","type":"Line"},{"attributes":{"children":[{"id":"1093"},{"id":"1056"}],"margin":[0,0,0,0],"name":"Column02947"},"id":"1092","type":"Column"},{"attributes":{"data_source":{"id":"1087"},"glyph":{"id":"1088"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1089"},"selection_glyph":null,"view":{"id":"1091"}},"id":"1090","type":"GlyphRenderer"},{"attributes":{},"id":"1057","type":"DataRange1d"},{"attributes":{"line_color":"#1f77b4","line_width":0.1,"x":{"field":"x"},"y":{"field":"y"}},"id":"1088","type":"Line"},{"attributes":{"data":{"x":{"__ndarray__":"AAAAAAAAAACIxvrQWB/KP4jG+tBYH9o/5hS8nIKX4z+IxvrQWB/qPxW8nIKXU/A/5hS8nIKX8z+3bdu2bdv2P4jG+tBYH/o/WR8a60Nj/T8VvJyCl1MAQH5orA+N9QFA5hS8nIKXA0BOwcspeDkFQLdt27Zt2wZAIBrrQ2N9CECIxvrQWB8KQPByCl5OwQtAWR8a60NjDUDCyyl4OQUPQBW8nIKXUxBASZIkSZIkEUB+aKwPjfURQLI+NNaHxhJA5hS8nIKXE0Aa60NjfWgUQE7Byyl4ORVAg5dT8HIKFkC3bdu2bdsWQOtDY31orBdAIBrrQ2N9GEBU8HIKXk4ZQIjG+tBYHxpAvJyCl1PwGkDwcgpeTsEbQCVJkiRJkhxAWR8a60NjHUCN9aGxPjQeQMLLKXg5BR9A9qGxPjTWH0AVvJyCl1MgQC+n4OUUvCBASZIkSZIkIUBjfWisD40hQH5orA+N9SFAmFPwcgpeIkCyPjTWh8YiQMwpeDkFLyNA5hS8nIKXI0AAAAAAAAAkQA==","dtype":"float64","order":"little","shape":[50]},"y":{"__ndarray__":"AAAAAAAAAADJDrbfBfHJP94CqIs0Z9k/q8l67P1j4j8pU7fk+VDnP2vgc+I3Rus/FlAz7akZ7j9KTGc3Sa3vP2QZyihV8O8/5QzYXQXg7j91/SE5p4fsP2uWTswlAOk/mCfHFAFv5D/2CHsSfwnePz51TQPV9dE/YwHr/1aNtD+VnVs0BZe/v36Q/qjumtS/YhbLOJY64L8b16WCRXvlvxXW8Y611+m/zoE66o8h7b+2sXCq4zXvvzoDCrGY/u+/HCrLbFpz779+AOJc8JntvyhI2KgAhuq/GuXUWT9Y5r8SoHnfEj3hv4he45h41da/cns4fVt8xL8RHWWzky+mP/6OupQ2Wc8/PjXLF7ns2z/xxPXkEILjP6Q5VPJ9Pug/NHDDWVH56z/k6EnT6YruP0Qeij381+8/mZTmnbXS7z9FixwDTnvuP+6EozEG4Os/jViKMpAc6D9lTu4N6VjjP72+hs9fj9s/kD/khTCQzj+a/bc3jfOiP8PkuyzBSMW/iZSxlR82179ST/P1nmjhvw==","dtype":"float64","order":"little","shape":[50]}},"selected":{"id":"1100"},"selection_policy":{"id":"1101"}},"id":"1087","type":"ColumnDataSource"},{"attributes":{"axis":{"id":"1069"},"dimension":1,"ticker":null},"id":"1072","type":"Grid"},{"attributes":{"text":""},"id":"1094","type":"Title"},{"attributes":{},"id":"1077","type":"ResetTool"},{"attributes":{},"id":"1078","type":"HelpTool"},{"attributes":{},"id":"1100","type":"Selection"},{"attributes":{"args":{"bidirectional":false,"properties":{"value":"line_width"},"source":{"id":"1093"},"target":{"id":"1088"}},"code":"\n    var value = source['value'];\n    value = value;\n    value = value;\n    try {\n      var property = target.properties['line_width'];\n      if (property !== undefined) { property.validate(value); }\n    } catch(err) {\n      console.log('WARNING: Could not set line_width on target, raised error: ' + err);\n      return;\n    }\n    try {\n      target['line_width'] = value;\n    } catch(err) {\n      console.log(err)\n    }\n    ","tags":[140014917868496]},"id":"1121","type":"CustomJS"},{"attributes":{"source":{"id":"1087"}},"id":"1091","type":"CDSView"},{"attributes":{},"id":"1098","type":"BasicTickFormatter"},{"attributes":{"overlay":{"id":"1079"}},"id":"1075","type":"BoxZoomTool"},{"attributes":{"end":10,"format":"0[.]00","js_property_callbacks":{"change:value":[{"id":"1121"}]},"margin":[5,10,5,10],"start":0.1,"step":0.1,"title":"Line Width","value":0.1,"value_throttled":0.1},"id":"1093","type":"Slider"},{"attributes":{},"id":"1096","type":"BasicTickFormatter"},{"attributes":{},"id":"1073","type":"PanTool"},{"attributes":{},"id":"1066","type":"BasicTicker"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"right_units":"screen","top_units":"screen"},"id":"1079","type":"BoxAnnotation"},{"attributes":{},"id":"1076","type":"SaveTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1073"},{"id":"1074"},{"id":"1075"},{"id":"1076"},{"id":"1077"},{"id":"1078"}]},"id":"1080","type":"Toolbar"},{"attributes":{"below":[{"id":"1065"}],"center":[{"id":"1068"},{"id":"1072"}],"left":[{"id":"1069"}],"plot_height":300,"plot_width":300,"renderers":[{"id":"1090"}],"title":{"id":"1094"},"toolbar":{"id":"1080"},"x_range":{"id":"1057"},"x_scale":{"id":"1061"},"y_range":{"id":"1059"},"y_scale":{"id":"1063"}},"id":"1056","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1059","type":"DataRange1d"},{"attributes":{},"id":"1074","type":"WheelZoomTool"},{"attributes":{"axis":{"id":"1065"},"ticker":null},"id":"1068","type":"Grid"},{"attributes":{},"id":"1063","type":"LinearScale"}],"root_ids":["1092","1140"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"0c30ac2e-f23a-41ed-9039-2c937d101813","root_ids":["1092"],"roots":{"1092":"b7655d8a-595e-4786-a8a0-9edb70de3285"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="HoloViews">HoloViews<a class="anchor-link" href="#HoloViews">¶</a></h4><p>Bokeh models allow us to directly access the underlying models and properties, but this access is more indirect when working with HoloViews objects. HoloViews makes various models available directly in the namespace so that they can be accessed for linking:</p>
+<ul>
+<li><strong><code>cds</code></strong>: The bokeh <code>ColumnDataSource</code> model which holds the data used to render the plot</li>
+<li><strong><code>glyph</code></strong>: The bokeh <code>Glyph</code> defining the style of the element</li>
+<li><strong><code>glyph_renderer</code></strong>: The Bokeh <code>GlyphRenderer</code> responsible for rendering the element</li>
+<li><strong><code>plot</code></strong>: The bokeh <code>Figure</code></li>
+<li><strong><code>xaxis</code>/<code>yaxis</code></strong>: The Axis models of the plot</li>
+<li><strong><code>x_range</code>/<code>y_range</code></strong>: The x/y-axis <code>Range1d</code> models defining the axis ranges</li>
+</ul>
+<p>All these are made available in the JS code's namespace if we decide to provide a JS code snippet, but can also be referenced in the property mapping. We can map the widget value to a property on the <code>glyph</code> by providing a specification separated by periods. E.g. in this case we can map the value to the <code>glyph.size</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">holoviews</span> <span class="k">as</span> <span class="nn">hv</span>
+<span class="kn">import</span> <span class="nn">holoviews.plotting.bokeh</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"black"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"gray"</span><span class="p">]</span>
+
+<span class="n">size_widget</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'Size'</span><span class="p">)</span>
+<span class="n">color_widget</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Color'</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
+
+<span class="n">points</span> <span class="o">=</span> <span class="n">hv</span><span class="o">.</span><span class="n">Points</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">padding</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
+
+<span class="n">size_widget</span><span class="o">.</span><span class="n">jslink</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'glyph.size'</span><span class="p">)</span>
+<span class="n">color_widget</span><span class="o">.</span><span class="n">jslink</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">'glyph.fill_color'</span><span class="p">)</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">size_widget</span><span class="p">,</span> <span class="n">color_widget</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:param.main: Option 'line_color' for Points type not valid for selected backend ('matplotlib'). Option only applies to following backends: ['bokeh']
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[20]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div id="1186">
+<div class="bk-root" data-root-id="1186" id="7e7e3c25-3f16-4fc9-9be9-2e80adc903be"></div>
+</div>
+<script type="application/javascript">(function(root) {
+  function embed_document(root) {
+    var docs_json = {"b4a6377e-2b79-4d3c-b995-8becda7adf02":{"roots":{"references":[{"attributes":{"children":[{"id":"1187"},{"id":"1188"}],"margin":[0,0,0,0],"name":"Row03000"},"id":"1186","type":"Row"},{"attributes":{"children":[{"id":"1189"},{"id":"1190"}],"margin":[0,0,0,0],"name":"Column02994"},"id":"1188","type":"Column"},{"attributes":{"client_comm_id":"ed4f4deaba954343be29f9eb79728e42","comm_id":"b7e00e2ac6734608871e3ec66775ca5c","plot_id":"1186"},"id":"1191","type":"panel.models.comm_manager.CommManager"},{"attributes":{"height":288,"margin":[5,5,5,5],"name":"Matplotlib03052","text":"&lt;img src=&quot;data:image/png;base64,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&quot; width=&quot;288px&quot; height=&quot;288px&quot; alt=&quot;&quot;&gt;&lt;/img&gt;","width":288},"id":"1187","type":"panel.models.markup.HTML"},{"attributes":{"end":20,"format":"0[.]00","margin":[5,10,5,10],"start":3,"step":0.1,"title":"Size","value":8,"value_throttled":8},"id":"1189","type":"Slider"},{"attributes":{"margin":[5,10,5,10],"options":["black","red","blue","green","gray"],"title":"Color","value":"black"},"id":"1190","type":"Select"}],"root_ids":["1186","1191"]},"title":"Bokeh Application","version":"2.2.3"}};
+    var render_items = [{"docid":"b4a6377e-2b79-4d3c-b995-8becda7adf02","root_ids":["1186"],"roots":{"1186":"7e7e3c25-3f16-4fc9-9be9-2e80adc903be"}}];
+    root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+    embed_document(root);
+  } else {
+    var attempts = 0;
+    var timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined && root.Bokeh.Panel !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else if (document.readyState == "complete") {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Of course, if you need to transform between the displayed widget value and the value to be used on the underlying Bokeh property, you can add custom JS code as shown in <a href="#Linking-using-custom-JS-code">the previous section</a>. Together these linking options should allow you to express whatever interactions you wish between your Panel objects.</p>
+</div>
+</div>
+</div>
+<div id="scroller-right">
+This web page was generated from a Jupyter notebook and not all
+interactivity will work on this website. <a href="https://raw.githubusercontent.com/holoviz/panel/master/examples/user_guide/Links.ipynb">Right click to download and run locally</a> for full
+Python-backed interactivity.
+</div><hr class="docutils"/>
+<p><a class="reference external" href="https://raw.githubusercontent.com/holoviz/panel/master/examples/user_guide/Links.ipynb">Right click to download this notebook from GitHub.</a></p>
+</div>
+</div>
+</div>
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-154795830-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154795830-2', { 'anonymize_ip': true });
+</script>
+<!-- MathJax Config -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
